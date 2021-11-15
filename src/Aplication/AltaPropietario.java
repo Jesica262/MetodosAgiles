@@ -1,6 +1,5 @@
 package Aplication;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,7 +15,6 @@ import javax.swing.JComboBox;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
-import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
