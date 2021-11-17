@@ -1,14 +1,14 @@
 package Class;
 
+import java.time.LocalDate;
+
 public class Venta {
 
-	public String nombre;
+	private Integer idVenta;
+	private Float montoVenta;
+	private LocalDate fechaVenta;
+	private Cliente cliente;
+	private Inmueble inmueble;
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	
 }

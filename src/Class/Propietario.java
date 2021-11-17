@@ -2,19 +2,18 @@ package Class;
 
 public class Propietario {
 
-	private Integer id;
+	private Integer idPropietario;
 	private String nombre;
 	private String apellido;
 	private String tipoDocumento; //ver si conviene enum
-	private long dni;
+	private long numeroDocumento;
 	private String calle;
 	private Integer numeroCalle;
 	private String localidad; //ver si conviene enum
 	private String provincia; //ver si conviene enum
 	private long telefono; // yo lo pondria como String
-	private String usuario;
-	private String clave;
 	private String email;
+	private Boolean eliminado;
 
 	public String getNombre() {
 		return nombre;
@@ -24,13 +23,7 @@ public class Propietario {
 		this.nombre = nombre;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 
 	public String getApellido() {
 		return apellido;
@@ -48,13 +41,7 @@ public class Propietario {
 		this.tipoDocumento = tipoDocumento;
 	}
 
-	public long getDni() {
-		return dni;
-	}
-
-	public void setDni(long dni) {
-		this.dni = dni;
-	}
+	
 
 	public String getCalle() {
 		return calle;
@@ -96,21 +83,7 @@ public class Propietario {
 		this.telefono = telefono;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getClave() {
-		return clave;
-	}
-
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
+	
 
 	public String getEmail() {
 		return email;

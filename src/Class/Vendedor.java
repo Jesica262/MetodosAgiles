@@ -2,13 +2,14 @@ package Class;
 
 public class Vendedor {
 
-	private Integer id;
+	private Integer idVendedor;
 	private String nombre;
 	private String apellido;
 	private long dni;
 	private String usuario;
 	private String clave;
 	private String email;
+	private Boolean eliminado;
 	
 	
 
@@ -20,13 +21,7 @@ public class Vendedor {
 		this.nombre = nombre;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 
 	public String getApellido() {
 		return apellido;

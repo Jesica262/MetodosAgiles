@@ -1,14 +1,15 @@
 package Class;
 
+import java.time.LocalDate;
+
 public class Reserva {
 
-	public String nombre;
+	private Integer idReserva;
+	private Float importe;
+	private LocalDate fechaInicio;
+	private LocalDate fechaFin;
+	private Cliente cliente;
+	private Inmueble inmueble;
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	
 }

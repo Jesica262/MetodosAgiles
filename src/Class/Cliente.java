@@ -5,8 +5,10 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	private long telefono; // ver si es mejor string
+	private String email;
 	private String usuario;
 	private String clave;
+	private Boolean eliminado;
 
 	public String getNombre() {
 		return nombre;
