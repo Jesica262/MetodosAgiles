@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Class.DTOAdministrador;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -28,6 +31,7 @@ public class VendedorABM extends JFrame {
 	private JTextField textApellido;
 	private JTextField textEmail;
 	private JTextField textClave;
+	private DTOAdministrador dtoAdministrador;
 
 	/**
 	 * Launch the application.
@@ -272,5 +276,10 @@ public class VendedorABM extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	public VendedorABM(DTOAdministrador dtoAdmin) {
+		// TODO Auto-generated constructor stub
+		dtoAdministrador=dtoAdmin;
 	}
 }

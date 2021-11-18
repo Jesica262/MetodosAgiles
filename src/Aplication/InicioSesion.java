@@ -5,12 +5,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Class.Administrador;
+import Class.DTOAdministrador;
 import Controller.GestorAdministrador;
 import Controller.LoginController;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.EventQueue;
@@ -60,8 +63,31 @@ public class InicioSesion extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String nombre = txtUsuario.getText();
-				Administrador administrador = new Administrador();
+				String usuario = txtUsuario.getText();
+				String contrasenia= textContrasenia.getText();
+				
+				
+				if(lc.validacionVacios(usuario, contrasenia)) {
+					DTOAdministrador administradorABuscar = new DTOAdministrador(usuario,contrasenia);
+					ArrayList<DTOAdministrador> listaAdministradores;
+					try {
+						listaAdministradores = ga.buscarAdministrador(administradorABuscar);
+						
+						if(!listaAdministradores.isEmpty()) {
+							VendedorABM vendedorABM = new VendedorABM(listaAdministradores.get(0));
+							vendedorABM.setVisible(true);
+							vendedorABM.setLocationRelativeTo(null);
+							dispose();
+							
+						}
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+					
+				}
 				
 //				administrador.setNombre(nombre);
 //				try {
