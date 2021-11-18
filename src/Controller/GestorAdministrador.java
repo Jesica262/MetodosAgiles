@@ -5,10 +5,15 @@ import Dao.AdministradorDao;
 import Dao.AdministradorDaoImplement;
 
 public class GestorAdministrador {
-	
+	static private GestorAdministrador gestor = new GestorAdministrador();
 	private AdministradorDaoImplement admiDao;
+    
 
-	public GestorAdministrador() {
+    static public GestorAdministrador get() {
+        return gestor;
+    }
+
+	private GestorAdministrador() {
 		
 		admiDao = new AdministradorDao() ;
 	}
