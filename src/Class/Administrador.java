@@ -8,6 +8,12 @@ public class Administrador {
 	private Boolean eliminado;
 
 	public Administrador() {}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	
 	
 
 }

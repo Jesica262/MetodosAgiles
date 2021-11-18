@@ -6,7 +6,7 @@ import Dao.AdministradorDaoImplement;
 
 public class GestorAdministrador {
 	static private GestorAdministrador gestor = new GestorAdministrador();
-	private AdministradorDaoImplement admiDao;
+	private AdministradorDao admiDao;
     
 
     static public GestorAdministrador get() {
@@ -15,7 +15,7 @@ public class GestorAdministrador {
 
 	private GestorAdministrador() {
 		
-		admiDao = new AdministradorDao() ;
+		admiDao = new AdministradorDaoImplement() ;
 	}
 	
 	public void guardar(Administrador admi) throws Exception {

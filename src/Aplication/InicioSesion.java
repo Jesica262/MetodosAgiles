@@ -26,7 +26,7 @@ public class InicioSesion extends JFrame {
 	private JTextField txtUsuario;
 	private JTextField textContrasenia;
 	private LoginController lc = new LoginController();
-	GestorAdministrador ga = new GestorAdministrador();
+	GestorAdministrador ga = GestorAdministrador.get();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -63,13 +63,13 @@ public class InicioSesion extends JFrame {
 				String nombre = txtUsuario.getText();
 				Administrador administrador = new Administrador();
 				
-				administrador.setNombre(nombre);
-				try {
-					ga.guardar(administrador);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+//				administrador.setNombre(nombre);
+//				try {
+//					ga.guardar(administrador);
+//				} catch (Exception e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
 				//	String user = txtUsuario.getText();
 				//String password = textContrasenia.getText();
 				//Boolean aux = lc.validacionVacios(user, password);
