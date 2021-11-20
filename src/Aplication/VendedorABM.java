@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Class.DTOAdministrador;
+import Controller.GestorVendedor;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -243,6 +244,7 @@ public class VendedorABM extends JFrame {
 		JLabel lblNewLabel = new JLabel("VENDEDORES:");
 		
 		JComboBox comboBoxVendedores = new JComboBox();
+		List<DTOVendedor> listaVendedores = GestorVendedor.get().obtenerTodos(); 
 		comboBoxVendedores.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
 		
 		JButton btnBuscar = new JButton("Buscar");
