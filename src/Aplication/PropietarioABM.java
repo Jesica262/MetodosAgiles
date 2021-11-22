@@ -27,13 +27,13 @@ public class PropietarioABM extends JFrame {
 	private JTextField textNombre;
 	private JTextField textDni;
 	private JTextField textApellido;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textTelefono;
+	private JTextField textEmail;
+	private JTextField textCalle;
+	private JTextField textNumero;
+	private JTextField textTipo;
+	private JTextField textProvincia;
+	private JTextField textLocalidad;
 
 	/**
 	 * Launch the application.
@@ -153,13 +153,13 @@ public class PropietarioABM extends JFrame {
 		textApellido.setEditable(false);
 		textApellido.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
+		textTelefono = new JTextField();
+		textTelefono.setEditable(false);
+		textTelefono.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
+		textEmail = new JTextField();
+		textEmail.setEditable(false);
+		textEmail.setColumns(10);
 		
 		JButton btnCrear = new JButton("Crear Propietario");
 		btnCrear.addActionListener(new ActionListener() {
@@ -202,27 +202,27 @@ public class PropietarioABM extends JFrame {
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Calle:");
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setColumns(10);
+		textCalle = new JTextField();
+		textCalle.setEditable(false);
+		textCalle.setColumns(10);
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Numero:");
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
+		textNumero = new JTextField();
+		textNumero.setEditable(false);
+		textNumero.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
+		textTipo = new JTextField();
+		textTipo.setEditable(false);
+		textTipo.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
+		textProvincia = new JTextField();
+		textProvincia.setEditable(false);
+		textProvincia.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
+		textLocalidad = new JTextField();
+		textLocalidad.setEditable(false);
+		textLocalidad.setColumns(10);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -253,11 +253,11 @@ public class PropietarioABM extends JFrame {
 								.addComponent(lblNewLabel_1_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(textField_2)
+								.addComponent(textTipo)
 								.addComponent(textNombre, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-								.addComponent(textField_5)
-								.addComponent(textField)
-								.addComponent(textField_3))))
+								.addComponent(textProvincia)
+								.addComponent(textCalle)
+								.addComponent(textTelefono))))
 					.addGap(62)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
@@ -272,11 +272,11 @@ public class PropietarioABM extends JFrame {
 					.addGap(10)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(textField_4)
-							.addComponent(textField_1)
+							.addComponent(textEmail)
+							.addComponent(textNumero)
 							.addComponent(textDni)
 							.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textLocalidad, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
 					.addGap(29))
 		);
 		gl_panel_1.setVerticalGroup(
@@ -297,13 +297,13 @@ public class PropietarioABM extends JFrame {
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_2)
-								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(textTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(17)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_1_2)
 								.addComponent(lblNewLabel_1_1_1_2)
-								.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(textLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_1_1)
@@ -313,14 +313,14 @@ public class PropietarioABM extends JFrame {
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1_2_1)
 						.addComponent(lblNewLabel_1_2_1_1)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1_1_1_1_1)
 						.addComponent(lblNewLabel_1_1_1_1)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(64)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCrear)

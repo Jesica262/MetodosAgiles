@@ -23,11 +23,11 @@ import java.awt.Font;
 public class ModificarVendedor extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textNombre;
+	private JTextField textDni;
+	private JTextField textApellido;
+	private JTextField textEmail;
+	private JTextField textClave;
 
 	/**
 	 * Launch the application.
@@ -74,15 +74,15 @@ public class ModificarVendedor extends JFrame {
 			}
 		});
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				//Mensaje 
 				dispose();
 			}
 		});
-		btnAceptar.setBackground(SystemColor.controlHighlight);
+		btnModificar.setBackground(SystemColor.controlHighlight);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -90,28 +90,28 @@ public class ModificarVendedor extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textNombre = new JTextField();
+		textNombre.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Dni:");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textDni = new JTextField();
+		textDni.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Apellido:");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textApellido = new JTextField();
+		textApellido.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Email:");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textEmail = new JTextField();
+		textEmail.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Clave:");
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textClave = new JTextField();
+		textClave.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -122,23 +122,23 @@ public class ModificarVendedor extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(33)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textDni, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(33)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_1_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(33)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(33)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(textClave, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(113, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -150,31 +150,31 @@ public class ModificarVendedor extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1))
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_1))
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_1_1))
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_1_1_1))
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_1_1_1_1))
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(51, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
@@ -183,7 +183,7 @@ public class ModificarVendedor extends JFrame {
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(329, Short.MAX_VALUE)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnModificar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 					.addGap(31))
@@ -206,7 +206,7 @@ public class ModificarVendedor extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
-						.addComponent(btnAceptar))
+						.addComponent(btnModificar))
 					.addGap(20))
 		);
 		panel_1.setLayout(gl_panel_1);
