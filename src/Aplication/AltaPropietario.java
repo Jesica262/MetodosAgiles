@@ -23,12 +23,12 @@ public class AltaPropietario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNombre;
-	private JTextField textDni;
 	private JTextField textApellido;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textDni;
+	private JTextField textTelefono;
+	private JTextField textEmail;
+	private JTextField textCalle;
+	private JTextField textNumero;
 
 	/**
 	 * Launch the application.
@@ -76,99 +76,69 @@ public class AltaPropietario extends JFrame {
 		JLabel lblPropietarioX = new JLabel("ALTA DE PROPIETARIO");
 		lblPropietarioX.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
-		JButton btnAceptr = new JButton("Aceptar");
-		btnAceptr.addActionListener(new ActionListener() {
+		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Mensaje 
 				dispose();
 			}
 		});
-		btnAceptr.setBackground(SystemColor.controlHighlight);
+		btnAgregar.setBackground(SystemColor.controlHighlight);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.setBackground(SystemColor.activeCaption);
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(74)
-					.addComponent(lblPropietarioX, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(240, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(338, Short.MAX_VALUE)
-					.addComponent(btnAceptr, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-					.addGap(24))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(41)
-					.addComponent(lblPropietarioX)
-					.addGap(25)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCancelar)
-						.addComponent(btnAceptr))
-					.addGap(25))
-		);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
 		
 		textNombre = new JTextField();
 		textNombre.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Tipo:");
-		
-		JComboBox comboBox = new JComboBox();
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Provincia:");
-		
-		JComboBox comboBox_1 = new JComboBox();
-		
-		JLabel lblNewLabel_1_2_1 = new JLabel("Calle:");
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Telefono:");
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Apellido:");
 		
 		textApellido = new JTextField();
 		textApellido.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Tipo:");
+		
+		JComboBox comboTipo = new JComboBox();
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Dni:");
 		
 		textDni = new JTextField();
 		textDni.setColumns(10);
 		
-		JLabel lblNewLabel_1_1_1_2 = new JLabel("Localidad:");
+		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Telefono:");
 		
-		JComboBox comboBox_1_1 = new JComboBox();
-		
-		JLabel lblNewLabel_1_2_1_1 = new JLabel("Numero:");
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textTelefono = new JTextField();
+		textTelefono.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Email:");
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textEmail = new JTextField();
+		textEmail.setColumns(10);
+		
+		JLabel lblNewLabel_1_2_1 = new JLabel("Calle:");
+		
+		textCalle = new JTextField();
+		textCalle.setColumns(10);
+		
+		JLabel lblNewLabel_1_2_1_1 = new JLabel("Numero:");
+		
+		textNumero = new JTextField();
+		textNumero.setColumns(10);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Provincia:");
+		
+		JComboBox comboProvincia = new JComboBox();
+		
+		JLabel lblNewLabel_1_1_1_2 = new JLabel("Localidad:");
+		
+		JComboBox comboLocalidad = new JComboBox();
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 550, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
@@ -177,29 +147,29 @@ public class AltaPropietario extends JFrame {
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(lblNewLabel_1_2_1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 									.addGap(36)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textCalle, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
 									.addGap(77)
 									.addComponent(lblNewLabel_1_2_1_1, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(lblNewLabel_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
 									.addGap(24)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textTelefono, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
 									.addGap(77)
 									.addComponent(lblNewLabel_1_1_1_1, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)))
 							.addGap(18)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+									.addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
 									.addGap(12))
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+									.addComponent(textNumero, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
 									.addContainerGap())))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 								.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
 									.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
 									.addGap(4)
-									.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+									.addComponent(comboProvincia, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
 									.addGap(77)
 									.addComponent(lblNewLabel_1_1_1_2, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
 									.addGap(124))
@@ -212,7 +182,7 @@ public class AltaPropietario extends JFrame {
 										.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
 											.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
 											.addGap(4)
-											.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(comboTipo, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)))
 									.addGap(77)
 									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 										.addGroup(gl_panel.createSequentialGroup()
@@ -223,12 +193,13 @@ public class AltaPropietario extends JFrame {
 											.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
 											.addGap(18)
 											.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(comboBox_1_1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(comboLocalidad, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 												.addComponent(textDni, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))))))
 							.addContainerGap())))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 316, Short.MAX_VALUE)
 				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
 					.addContainerGap(56, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
@@ -241,7 +212,7 @@ public class AltaPropietario extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(5)
 							.addComponent(lblNewLabel_2))
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(7)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
@@ -252,37 +223,68 @@ public class AltaPropietario extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(5)
 							.addComponent(lblNewLabel_1_2))
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(5)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_1_1_1_2)
-								.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(comboLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_2_1))
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_1_2_1_1)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(textNumero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1_1_1_1_1))
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_1_1_1_1)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGap(62))
 		);
 		panel.setLayout(gl_panel);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(74)
+					.addComponent(lblPropietarioX, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(240, Short.MAX_VALUE))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap(338, Short.MAX_VALUE)
+					.addComponent(btnAgregar, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+					.addGap(24))
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(41)
+					.addComponent(lblPropietarioX)
+					.addGap(26)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCancelar)
+						.addComponent(btnAgregar))
+					.addGap(25))
+		);
 		panel_1.setLayout(gl_panel_1);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

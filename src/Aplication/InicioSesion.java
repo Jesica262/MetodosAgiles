@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
+import java.awt.SystemColor;
 
 public class InicioSesion extends JFrame {
 
@@ -52,13 +53,14 @@ public class InicioSesion extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ingresa tus datos");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JLabel lblNewLabel_1 = new JLabel("INGRESA TUS DATOS");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JButton btnNewButton = new JButton("Acceder");
+		JButton btnNewButton = new JButton("Ingresar");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -115,6 +117,7 @@ public class InicioSesion extends JFrame {
 		});
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.activeCaption);
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -125,11 +128,11 @@ public class InicioSesion extends JFrame {
 							.addGap(166)
 							.addComponent(btnNewButton))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(119)
-							.addComponent(lblNewLabel_1))
-						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(37)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(108)
+							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(41, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -145,13 +148,13 @@ public class InicioSesion extends JFrame {
 		);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setColumns(10);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		textContrasenia = new JTextField();
 		textContrasenia.setColumns(10);

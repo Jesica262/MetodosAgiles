@@ -23,7 +23,7 @@ import java.awt.Font;
 public class ConsultarInmueble extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textBarrio;
 
 	/**
 	 * Launch the application.
@@ -70,15 +70,15 @@ public class ConsultarInmueble extends JFrame {
 			}
 		});
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				//Mensaje 
 				dispose();
 			}
 		});
-		btnAceptar.setBackground(SystemColor.controlHighlight);
+		btnBuscar.setBackground(SystemColor.controlHighlight);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -91,11 +91,11 @@ public class ConsultarInmueble extends JFrame {
 		JLabel lblNewLabel_1_3 = new JLabel("PRECIO");
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox comboPrecioMin = new JComboBox();
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Maximo:");
 		
-		JComboBox comboBox_1_2 = new JComboBox();
+		JComboBox comboPrecioMax = new JComboBox();
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Minimo:");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
@@ -109,11 +109,11 @@ public class ConsultarInmueble extends JFrame {
 					.addGap(52)
 					.addComponent(lblNewLabel_1_1_1_1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+					.addComponent(comboPrecioMin, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
 					.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBox_1_2, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+					.addComponent(comboPrecioMax, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 					.addGap(48))
 		);
 		gl_panel_2.setVerticalGroup(
@@ -125,8 +125,8 @@ public class ConsultarInmueble extends JFrame {
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1_1_1_1)
 						.addComponent(lblNewLabel_1_1_1)
-						.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_1_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboPrecioMin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboPrecioMax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(gl_panel_2);
@@ -135,7 +135,7 @@ public class ConsultarInmueble extends JFrame {
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(335, Short.MAX_VALUE)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 					.addGap(31))
@@ -164,7 +164,7 @@ public class ConsultarInmueble extends JFrame {
 					.addGap(49)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
-						.addComponent(btnAceptar))
+						.addComponent(btnBuscar))
 					.addGap(20))
 		);
 		
@@ -174,20 +174,20 @@ public class ConsultarInmueble extends JFrame {
 		
 		JLabel lblNewLabel_1_2_2 = new JLabel("Cant. Dormitorios:");
 		
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox comboCantDormitorio = new JComboBox();
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textBarrio = new JTextField();
+		textBarrio.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboProvincia = new JComboBox();
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Localidad:");
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Tipo:");
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox comboLocalidad = new JComboBox();
 		
-		JComboBox comboBox_1_1 = new JComboBox();
+		JComboBox comboTipoBarrio = new JComboBox();
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -197,23 +197,23 @@ public class ConsultarInmueble extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 							.addGap(4)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboProvincia, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 							.addGap(75)
 							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(8)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+							.addComponent(comboLocalidad, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
 							.addGap(29)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textBarrio, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 							.addGap(75)
 							.addComponent(lblNewLabel_1_2_1, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 							.addGap(4)
-							.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+							.addComponent(comboTipoBarrio, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(lblNewLabel_1_2_2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 							.addGap(4)
-							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(comboCantDormitorio, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18))
 		);
 		gl_panel.setVerticalGroup(
@@ -224,11 +224,11 @@ public class ConsultarInmueble extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(5)
 							.addComponent(lblNewLabel_1))
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(5)
 							.addComponent(lblNewLabel_1_1))
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
@@ -236,15 +236,15 @@ public class ConsultarInmueble extends JFrame {
 							.addComponent(lblNewLabel_1_2))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(2)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textBarrio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(5)
 							.addComponent(lblNewLabel_1_2_1))
-						.addComponent(comboBox_1_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboTipoBarrio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(28)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1_2_2)
-						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboCantDormitorio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);

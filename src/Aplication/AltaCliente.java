@@ -19,12 +19,12 @@ import java.awt.Font;
 public class AltaCliente extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textClave;
+	private JTextField textTelefono;
+	private JTextField textUsuario;
+	private JTextField textNombre;
+	private JTextField textApellido;
+	private JTextField textEmail;
 
 	/**
 	 * Launch the application.
@@ -68,15 +68,15 @@ public class AltaCliente extends JFrame {
 			}
 		});
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
+		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				//Mensaje 
 				dispose();
 			}
 		});
-		btnAceptar.setBackground(SystemColor.controlHighlight);
+		btnAgregar.setBackground(SystemColor.controlHighlight);
 		
 		JLabel lblPropietarioX = new JLabel("ALTA DE CLIENTE");
 		lblPropietarioX.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -87,33 +87,33 @@ public class AltaCliente extends JFrame {
 		
 		JLabel lblNewLabel_1_1_1_1_2 = new JLabel("Clave:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textClave = new JTextField();
+		textClave.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Telefono:");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textTelefono = new JTextField();
+		textTelefono.setColumns(10);
 		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Usuario:");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textUsuario = new JTextField();
+		textUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textNombre = new JTextField();
+		textNombre.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1_2 = new JLabel("Apellido:");
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textApellido = new JTextField();
+		textApellido.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Email:");
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		textEmail = new JTextField();
+		textEmail.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -129,9 +129,9 @@ public class AltaCliente extends JFrame {
 								.addComponent(lblNewLabel_1_1_1_1_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
 							.addGap(18)))
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(textField_2)
-						.addComponent(textField_1)
-						.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+						.addComponent(textUsuario)
+						.addComponent(textTelefono)
+						.addComponent(textNombre, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
 					.addGap(72)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
@@ -141,9 +141,9 @@ public class AltaCliente extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textClave, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(34, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -153,7 +153,7 @@ public class AltaCliente extends JFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNewLabel_1_1_1_2))
 							.addGap(41)
 							.addComponent(lblNewLabel_1_1_1_1_1))
@@ -162,17 +162,17 @@ public class AltaCliente extends JFrame {
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(3)
 									.addComponent(lblNewLabel_1))
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(38)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNewLabel_1_1)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(40)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_1_2_1_1)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNewLabel_1_1_1_1_2))))
 					.addContainerGap(58, Short.MAX_VALUE))
 		);
@@ -182,7 +182,7 @@ public class AltaCliente extends JFrame {
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(335, Short.MAX_VALUE)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnAgregar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 					.addGap(31))
@@ -205,7 +205,7 @@ public class AltaCliente extends JFrame {
 					.addGap(64)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
-						.addComponent(btnAceptar))
+						.addComponent(btnAgregar))
 					.addGap(20))
 		);
 		panel_1.setLayout(gl_panel_1);

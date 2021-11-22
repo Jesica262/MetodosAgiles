@@ -74,7 +74,7 @@ public class AltaVendedor extends JFrame {
 			}
 		});
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		JButton btnAceptar = new JButton("Agregar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
