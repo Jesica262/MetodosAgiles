@@ -63,4 +63,20 @@ public class Vendedor {
 		this.usuario = usuario;
 	}
 
+	public void setIdVendedor(Integer idVendedor) {
+		this.idVendedor = idVendedor;
+	}
+
+	public void setEliminado(Boolean eliminado) {
+		this.eliminado = eliminado;
+	}
+
+	public Integer getIdVendedor() {
+		return idVendedor;
+	}
+
+	public Boolean getEliminado() {
+		return eliminado;
+	}
+
 }

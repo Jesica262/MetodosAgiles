@@ -6,9 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import Class.DTOAdministrador;
 import Class.DTOVendedor;
 import Controller.GestorVendedor;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -213,6 +215,7 @@ public class VendedorABM extends JFrame {
 		
 		JComboBox comboBoxVendedores = new JComboBox();
 		List<DTOVendedor> listaVendedores = GestorVendedor.get().obtenerTodos(); 
+		for(DTOVendedor vend: listaVendedores) comboBoxVendedores.addItem(vend);
 		comboBoxVendedores.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
 		
 		JButton btnBuscar = new JButton("Buscar");
@@ -248,3 +251,4 @@ public class VendedorABM extends JFrame {
 		dtoAdministrador=dtoAdmin;
 	}
 }
+
