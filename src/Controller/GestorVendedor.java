@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Class.DTOVendedor;
+import Class.Vendedor;
 import Dao.AdministradorDao;
 import Class.Administrador;
 import Class.DTOAdministrador;
