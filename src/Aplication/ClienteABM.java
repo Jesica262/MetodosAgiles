@@ -24,7 +24,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.UIManager;
 import java.awt.Font;
 
-public class VendedorABM extends JFrame {
+public class ClienteABM extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNombre;
@@ -34,7 +34,7 @@ public class VendedorABM extends JFrame {
 	private JTextField textClave;
 	private DTOAdministrador dtoAdministrador;
 
-	public VendedorABM() {
+	public ClienteABM() {
 		setBackground(SystemColor.inactiveCaption);
 		setTitle("ABM - Vendedor");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,81 +132,92 @@ public class VendedorABM extends JFrame {
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(39)
 					.addComponent(lblVendedorX, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(345, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addGap(73)
+					.addContainerGap(351, Short.MAX_VALUE))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(56)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1_1_1_1)
-						.addComponent(lblNewLabel_1_1_1_1_1)
-						.addComponent(textNombre, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textDni, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textApellido, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textClave, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
-					.addGap(63)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnCancelar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnEliminar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnCrear, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-						.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(32))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblNewLabel_1_1_1_1, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblNewLabel_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_panel_1.createSequentialGroup()
+										.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+											.addComponent(textDni, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+											.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+											.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+											.addComponent(textNombre, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+											.addComponent(textApellido, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+											.addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+										.addGap(92))
+									.addGroup(gl_panel_1.createSequentialGroup()
+										.addComponent(lblNewLabel_1_1_1)
+										.addPreferredGap(ComponentPlacement.RELATED)))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addComponent(textClave, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+									.addGap(89)))
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnCancelar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(btnEliminar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(btnCrear, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)))
+							.addGap(32))))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(28)
 					.addComponent(lblVendedorX)
-					.addGap(18)
+					.addGap(25)
 					.addComponent(lblNewLabel_1)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(14)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_1_1)
-							.addGap(11)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(textDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)
-							.addComponent(lblNewLabel_1_1_1)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNewLabel_1_1_1_1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNewLabel_1_1_1_1_1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblNewLabel_1_1_1))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(btnCrear)
 							.addGap(18)
 							.addComponent(btnModificar)
 							.addGap(18)
 							.addComponent(btnEliminar)))
-					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-					.addComponent(btnCancelar)
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblNewLabel_1_1_1_1)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblNewLabel_1_1_1_1_1)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCancelar))
+					.addGap(56))
 		);
 		panel_1.setLayout(gl_panel_1);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 574, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap())
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 405, Short.MAX_VALUE))
 		);
 		
 		JLabel lblNewLabel = new JLabel("VENDEDORES:");
@@ -219,31 +230,31 @@ public class VendedorABM extends JFrame {
 		btnBuscar.setBackground(SystemColor.controlHighlight);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(41)
+					.addGap(38)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBoxVendedores, 0, 233, Short.MAX_VALUE)
+					.addComponent(comboBoxVendedores, 0, 246, Short.MAX_VALUE)
 					.addGap(18)
-					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
-					.addGap(32))
+					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+					.addGap(30))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(35)
+					.addContainerGap(34, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
 						.addComponent(comboBoxVendedores, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBuscar))
-					.addContainerGap(39, Short.MAX_VALUE))
+					.addGap(28))
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 	}
 
-	public VendedorABM(DTOAdministrador dtoAdmin) {
+	public ClienteABM(DTOAdministrador dtoAdmin) {
 		// TODO Auto-generated constructor stub
 		dtoAdministrador=dtoAdmin;
 	}

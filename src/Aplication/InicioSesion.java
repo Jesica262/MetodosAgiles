@@ -22,6 +22,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
 
 public class InicioSesion extends JFrame {
 
@@ -32,44 +37,121 @@ public class InicioSesion extends JFrame {
 	private LoginController lc = new LoginController();
 	GestorAdministrador ga = GestorAdministrador.get();
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InicioSesion frame = new InicioSesion();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 
 	public InicioSesion() {
 		
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel_1 = new JLabel("INGRESA TUS DATOS");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.activeCaption);
+		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+		);
+		
+		JComboBox comboCargo = new JComboBox();
+		comboCargo.setModel(new DefaultComboBoxModel(new String[] {"", "ADMINISTRADOR", "VENDEDOR", "USUARIO", "PROPIETARIO"}));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.activeCaption);
+		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		
+		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setColumns(10);
+		
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		textContrasenia = new JTextField();
+		textContrasenia.setColumns(10);
+		
+		JLabel lblContrasea_1 = new JLabel("Cargo:");
+		lblContrasea_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(37, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblContrasea_1, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtUsuario, GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+						.addComponent(lblUsuario, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textContrasenia)
+						.addComponent(comboCargo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(33))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(37, Short.MAX_VALUE)
+					.addComponent(lblUsuario)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(31)
+					.addComponent(lblContrasea)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textContrasenia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(36)
+					.addComponent(lblContrasea_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(comboCargo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(30))
+		);
+		panel.setLayout(gl_panel);
+		
+		JLabel lblNewLabel_1 = new JLabel("LOGIN");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JButton btnNewButton = new JButton("Ingresar");
+		btnNewButton.setBackground(UIManager.getColor("controlHighlight"));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String usuario = txtUsuario.getText();
-				String contrasenia= textContrasenia.getText();
+				String contrasenia = textContrasenia.getText();
+				String cargo = comboCargo.getSelectedItem().toString();
+				
+				switch (cargo)
+				{
+					case "ADMINISTRADOR":
+						MenuAdministrador menu = new MenuAdministrador();
+						menu.setVisible(true);
+						menu.setLocationRelativeTo(null);
+						break;
+					case "VENDEDOR":
+						MenuVendedor menuV = new MenuVendedor();
+						menuV.setVisible(true);
+						menuV.setLocationRelativeTo(null);
+						break;
+					case "USUARIO":
+						MenuCliente menuC = new MenuCliente();
+						menuC.setVisible(true);
+						menuC.setLocationRelativeTo(null);
+						break;
+					default:
+						JOptionPane.showMessageDialog(null, "Debe seleccionar un cargo!!");
+				}
 				
 				
-				if(lc.validacionVacios(usuario, contrasenia)) {
+			/*	if(lc.validacionVacios(usuario, contrasenia)) {
 					DTOAdministrador administradorABuscar = new DTOAdministrador(usuario,contrasenia);
 					ArrayList<DTOAdministrador> listaAdministradores;
 					try {
@@ -85,12 +167,9 @@ public class InicioSesion extends JFrame {
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}
-					
-					
-					
-				}
-				
+					}	
+				}*/
+	
 //				administrador.setNombre(nombre);
 //				try {
 //					ga.guardar(administrador);
@@ -115,83 +194,34 @@ public class InicioSesion extends JFrame {
 				
 			}
 		});
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.activeCaption);
-		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(166)
-							.addComponent(btnNewButton))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(37)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(108)
-							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(41, Short.MAX_VALUE))
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap(72, Short.MAX_VALUE)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(70))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(237)
+					.addComponent(btnNewButton)
+					.addContainerGap(252, Short.MAX_VALUE))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(221)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(238, Short.MAX_VALUE))
 		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(14)
-					.addComponent(lblNewLabel_1)
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(18)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_1)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnNewButton)
-					.addGap(15))
+					.addContainerGap(14, Short.MAX_VALUE))
 		);
-		
-		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		txtUsuario = new JTextField();
-		txtUsuario.setColumns(10);
-		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		textContrasenia = new JTextField();
-		textContrasenia.setColumns(10);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(25)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblUsuario, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-							.addGap(64)
-							.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(textContrasenia, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(26, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(33)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblUsuario)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(1)
-							.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(26)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblContrasea)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(1)
-							.addComponent(textContrasenia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(48, Short.MAX_VALUE))
-		);
-		panel.setLayout(gl_panel);
+		panel_1.setLayout(gl_panel_1);
 		contentPane.setLayout(gl_contentPane);
 	}
 	

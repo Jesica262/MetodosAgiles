@@ -20,12 +20,12 @@ public class GestorVendedor {
     }
 
 	public List<DTOVendedor> obtenerTodos() {
-		List<Vendedor> lista = vendedorDao.buscarTodos();
+	//	List<Vendedor> lista = vendedorDao.buscarTodos();
 		ArrayList<DTOVendedor> listaDTO = new ArrayList<DTOVendedor>();
-		for(Vendedor a: lista) {
-			listaDTO.add(new DTOAdministrador(a.getIdAdministrador(),a.getUsuario(),a.getClave(),a.getEliminado()));
+	//	for(Vendedor a: lista) {
+	//		listaDTO.add(new DTOAdministrador(a.getIdAdministrador(),a.getUsuario(),a.getClave(),a.getEliminado()));
 			
-		}
+	//	}
 		return listaDTO;
 	}
 

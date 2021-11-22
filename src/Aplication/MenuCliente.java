@@ -1,8 +1,5 @@
 package Aplication;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,43 +8,28 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import java.awt.Insets;
-import javax.swing.JCheckBoxMenuItem;
 import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Menu extends JFrame {
+public class MenuCliente extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menu frame = new Menu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Menu() {
+	public MenuCliente() {
+		setLocationRelativeTo(null);
 		setBackground(SystemColor.inactiveCaption);
 		setTitle("Menu");
 		setForeground(SystemColor.inactiveCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 560, 400);
+		setBounds(100, 100, 600, 450);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setMargin(new Insets(1, 1, 1, 1));
@@ -59,23 +41,78 @@ public class Menu extends JFrame {
 		JMenu menuVendedor = new JMenu("Vendedor");
 		menuVendedor.setBackground(SystemColor.inactiveCaptionText);
 		menuBar.add(menuVendedor);
-		menuVendedor.add("Nuevo");
-		menuVendedor.add("Eliminar");
+		
+		JMenuItem menuItemVendedor = new JMenuItem("ABM Vendedor");
+		menuItemVendedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VendedorABM vendedor = new VendedorABM();
+				vendedor.setVisible(true);
+				vendedor.setLocationRelativeTo(null);
+			}
+		});
+		menuVendedor.add(menuItemVendedor);
+		menuVendedor.addActionListener(null);
 		
 		JMenu menuCliente = new JMenu("Cliente");
 		menuCliente.setBackground(Color.BLACK);
 		menuBar.add(menuCliente);
-		menuCliente.add("Nuevo");
+		
+		JMenuItem menuItemCliente = new JMenuItem("ABM Cliente");
+		menuItemCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClienteABM cliente = new ClienteABM();
+				cliente.setVisible(true);
+				cliente.setLocationRelativeTo(null);
+			}
+		});
+		menuCliente.add(menuItemCliente);
 		
 		JMenu menuPorpietario = new JMenu("Propietario");
 		menuPorpietario.setBackground(Color.BLACK);
 		menuBar.add(menuPorpietario);
 		
+		JMenuItem menuItemPropietario = new JMenuItem("ABM Propietario");
+		menuItemPropietario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PropietarioABM propietario = new PropietarioABM();
+				propietario.setVisible(true);
+				propietario.setLocationRelativeTo(null);
+			}
+		});
+		menuPorpietario.add(menuItemPropietario);
+		
 		JMenu menuInmueble = new JMenu("Inmueble");
 		menuInmueble.setBackground(Color.BLACK);
 		menuBar.add(menuInmueble);
-		menuInmueble.add("Agregar");
-		menuInmueble.add("Consultar Inmueble");
+		
+		JMenuItem menuItemConsultaInmueble = new JMenuItem("Consultar Inmueble");
+		menuItemConsultaInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConsultarInmueble consulta = new ConsultarInmueble();
+				consulta.setVisible(true);
+				consulta.setLocationRelativeTo(null);
+			}
+		});
+		menuInmueble.add(menuItemConsultaInmueble);
+		
+		JMenuItem menuItemInmueble = new JMenuItem("ABM Inmueble");
+		menuItemInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InmuebleABM inmueble = new InmuebleABM();
+				inmueble.setVisible(true);
+				inmueble.setLocationRelativeTo(null);
+			}
+		});
+		menuInmueble.add(menuItemInmueble);
+		
+		JMenuItem menuItemCatalogo = new JMenuItem("Cat\u00E1logo de Inmuebles");
+		menuItemCatalogo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Ver que agregar
+			}
+		});
+		menuInmueble.add(menuItemCatalogo);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
