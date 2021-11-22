@@ -54,7 +54,7 @@ public class AltaPropietario extends JFrame {
 		setTitle("ABM - Propietario");
 		setForeground(SystemColor.inactiveCaption);
 		setBackground(SystemColor.inactiveCaption);
-		setBounds(100, 100, 600, 550);
+		setBounds(100, 100, 600, 560);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
