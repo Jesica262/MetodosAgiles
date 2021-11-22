@@ -1,5 +1,11 @@
 package Dao;
 
-public class VendedorDao {
+import java.util.List;
+
+import Class.Vendedor;
+
+public interface VendedorDao {
+
+	List<Vendedor> buscarTodos();
 
 }
