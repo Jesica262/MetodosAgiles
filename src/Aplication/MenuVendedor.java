@@ -38,21 +38,6 @@ public class MenuVendedor extends JFrame {
 		menuBar.setToolTipText("");
 		setJMenuBar(menuBar);
 		
-		JMenu menuVendedor = new JMenu("Vendedor");
-		menuVendedor.setBackground(SystemColor.inactiveCaptionText);
-		menuBar.add(menuVendedor);
-		
-		JMenuItem menuItemVendedor = new JMenuItem("ABM Vendedor");
-		menuItemVendedor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VendedorABM vendedor = new VendedorABM();
-				vendedor.setVisible(true);
-				vendedor.setLocationRelativeTo(null);
-			}
-		});
-		menuVendedor.add(menuItemVendedor);
-		menuVendedor.addActionListener(null);
-		
 		JMenu menuCliente = new JMenu("Cliente");
 		menuCliente.setBackground(Color.BLACK);
 		menuBar.add(menuCliente);

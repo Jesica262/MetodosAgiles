@@ -15,6 +15,22 @@ public class Propietario {
 	private String email;
 	private Boolean eliminado;
 
+	public Integer getIdPropietario() {
+		return idPropietario;
+	}
+
+	public void setIdPropietario(Integer idPropietario) {
+		this.idPropietario = idPropietario;
+	}
+
+	public long getNumeroDocumento() {
+		return numeroDocumento;
+	}
+
+	public void setNumeroDocumento(long numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

@@ -38,49 +38,6 @@ public class MenuCliente extends JFrame {
 		menuBar.setToolTipText("");
 		setJMenuBar(menuBar);
 		
-		JMenu menuVendedor = new JMenu("Vendedor");
-		menuVendedor.setBackground(SystemColor.inactiveCaptionText);
-		menuBar.add(menuVendedor);
-		
-		JMenuItem menuItemVendedor = new JMenuItem("ABM Vendedor");
-		menuItemVendedor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VendedorABM vendedor = new VendedorABM();
-				vendedor.setVisible(true);
-				vendedor.setLocationRelativeTo(null);
-			}
-		});
-		menuVendedor.add(menuItemVendedor);
-		menuVendedor.addActionListener(null);
-		
-		JMenu menuCliente = new JMenu("Cliente");
-		menuCliente.setBackground(Color.BLACK);
-		menuBar.add(menuCliente);
-		
-		JMenuItem menuItemCliente = new JMenuItem("ABM Cliente");
-		menuItemCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ClienteABM cliente = new ClienteABM();
-				cliente.setVisible(true);
-				cliente.setLocationRelativeTo(null);
-			}
-		});
-		menuCliente.add(menuItemCliente);
-		
-		JMenu menuPorpietario = new JMenu("Propietario");
-		menuPorpietario.setBackground(Color.BLACK);
-		menuBar.add(menuPorpietario);
-		
-		JMenuItem menuItemPropietario = new JMenuItem("ABM Propietario");
-		menuItemPropietario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PropietarioABM propietario = new PropietarioABM();
-				propietario.setVisible(true);
-				propietario.setLocationRelativeTo(null);
-			}
-		});
-		menuPorpietario.add(menuItemPropietario);
-		
 		JMenu menuInmueble = new JMenu("Inmueble");
 		menuInmueble.setBackground(Color.BLACK);
 		menuBar.add(menuInmueble);
@@ -94,16 +51,6 @@ public class MenuCliente extends JFrame {
 			}
 		});
 		menuInmueble.add(menuItemConsultaInmueble);
-		
-		JMenuItem menuItemInmueble = new JMenuItem("ABM Inmueble");
-		menuItemInmueble.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InmuebleABM inmueble = new InmuebleABM();
-				inmueble.setVisible(true);
-				inmueble.setLocationRelativeTo(null);
-			}
-		});
-		menuInmueble.add(menuItemInmueble);
 		
 		JMenuItem menuItemCatalogo = new JMenuItem("Cat\u00E1logo de Inmuebles");
 		menuItemCatalogo.addActionListener(new ActionListener() {

@@ -5,10 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Class.Propietario;
+import Controller.GestorPropietario;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
@@ -18,6 +23,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
 
 public class AltaPropietario extends JFrame {
 
@@ -29,7 +35,8 @@ public class AltaPropietario extends JFrame {
 	private JTextField textEmail;
 	private JTextField textCalle;
 	private JTextField textNumero;
-
+	private GestorPropietario gp = new GestorPropietario();
+	
 	public AltaPropietario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("ABM - Propietario");
@@ -44,6 +51,13 @@ public class AltaPropietario extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(SystemColor.activeCaption);
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		
+		JComboBox comboTipo = new JComboBox();
+		comboTipo.setModel(new DefaultComboBoxModel(new String[] {"", "DNI", "CI", "LI", "LE", "LC"}));
+		JComboBox comboProvincia = new JComboBox();
+		comboProvincia.setModel(new DefaultComboBoxModel(new String[] {"", "Santa fe", "Neuquen", "Jujuy", "Salta", "Catamarca", "Rio Negro", "La Pampa", "Misiones", "Corriente", "Santiago de estero", "Tucuman", "Entre Rios"}));
+		JComboBox comboLocalidad = new JComboBox();
+		comboLocalidad.setModel(new DefaultComboBoxModel(new String[] {"Rosario", "Santa Fe", "Resistencia", "Santo Tome", "Rincon", "Sauce"}));
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -60,8 +74,48 @@ public class AltaPropietario extends JFrame {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Mensaje 
-				dispose();
+				
+				String nombre = textNombre.getText();
+				String apellido = textApellido.getText();
+				String dni = textDni.getText();
+				String telefono = textTelefono.getText();
+				String email = textEmail.getText();
+				String calle = textCalle.getText();
+				String numero = textNumero.getText();
+				String tipo = comboTipo.getSelectedItem().toString();
+				String provincia = comboProvincia.getSelectedItem().toString();
+				String localidad = comboLocalidad.getSelectedItem().toString();
+				
+				if(gp.validacionVacios(nombre,apellido,dni,telefono,email,calle,numero,tipo,provincia,localidad))
+				{
+					Propietario p = new Propietario();
+					Integer nro = Integer.parseInt(numero);
+					Integer tel = Integer.parseInt(telefono);
+					p.setNombre(nombre);
+					p.setApellido(apellido);
+					p.setCalle(calle);
+					p.setEmail(email);
+					p.setLocalidad(localidad);
+					p.setNumeroCalle(nro);
+					p.setProvincia(provincia);
+					p.setTelefono(tel);
+					p.setTipoDocumento(tipo);
+					p.setNumeroDocumento(nro);
+					
+					try {
+						gp.guardar(p);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			
+				}
+				else {
+					informarErrorDeAlta();
+				}
+			
+				
+				
 			}
 		});
 		btnAgregar.setBackground(SystemColor.controlHighlight);
@@ -82,7 +136,6 @@ public class AltaPropietario extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("Tipo:");
 		
-		JComboBox comboTipo = new JComboBox();
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Dni:");
 		
@@ -111,11 +164,8 @@ public class AltaPropietario extends JFrame {
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Provincia:");
 		
-		JComboBox comboProvincia = new JComboBox();
-		
 		JLabel lblNewLabel_1_1_1_2 = new JLabel("Localidad:");
 		
-		JComboBox comboLocalidad = new JComboBox();
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -239,5 +289,10 @@ public class AltaPropietario extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+public void informarErrorDeAlta() {
+		
+		JOptionPane.showMessageDialog(null, "Es necesario completar todos los campos para dar de alta el Propietario");
+		
 	}
 }

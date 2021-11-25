@@ -62,7 +62,7 @@ public class InicioSesion extends JFrame {
 		);
 		
 		JComboBox comboCargo = new JComboBox();
-		comboCargo.setModel(new DefaultComboBoxModel(new String[] {"", "ADMINISTRADOR", "VENDEDOR", "USUARIO", "PROPIETARIO"}));
+		comboCargo.setModel(new DefaultComboBoxModel(new String[] {"", "ADMINISTRADOR", "VENDEDOR", "USUARIO"}));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);

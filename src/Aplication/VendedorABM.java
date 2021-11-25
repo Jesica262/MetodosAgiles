@@ -1,16 +1,11 @@
 package Aplication;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Class.DTOAdministrador;
 import Class.DTOVendedor;
 import Controller.GestorVendedor;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
