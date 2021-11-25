@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.List;
+
 import Class.Propietario;
 import Dao.PropietarioDao;
 import Dao.PropietarioDaoImplement;
@@ -11,7 +13,7 @@ public class GestorPropietario {
 	 
     public GestorPropietario() { 
     	
-    	propietarioDao=new PropietarioDaoImplement();
+    	propietarioDao = new PropietarioDaoImplement();
     }
 
   //  static public GestorPropietario get() {
@@ -29,6 +31,17 @@ public class GestorPropietario {
 			}
 	}
     
+    public List<Propietario> buscarTodos() throws Exception{
+		
+		try {
+			return propietarioDao.buscarTodos("");
+		   }
+			
+			catch (Exception ex) {
+				 throw ex;
+				
+			}
+    }
     public boolean validacionVacios(String nombre, String apellido, String dni, String telefono, String email, String calle, String numero, String tipo, String provincia, String localidad) {
 		
 		if(nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || telefono.isEmpty() || email.isEmpty() || calle.isEmpty() || numero.isEmpty() || tipo.isEmpty() || provincia.isEmpty() || localidad.isEmpty()) {
@@ -38,5 +51,4 @@ public class GestorPropietario {
 		
 		return true;
     }
-
 }

@@ -90,7 +90,8 @@ public class AltaPropietario extends JFrame {
 				{
 					Propietario p = new Propietario();
 					Integer nro = Integer.parseInt(numero);
-					Integer tel = Integer.parseInt(telefono);
+					Long tel = Long.parseLong(telefono);
+					Long dniAux = Long.parseLong(dni);
 					p.setNombre(nombre);
 					p.setApellido(apellido);
 					p.setCalle(calle);
@@ -100,7 +101,7 @@ public class AltaPropietario extends JFrame {
 					p.setProvincia(provincia);
 					p.setTelefono(tel);
 					p.setTipoDocumento(tipo);
-					p.setNumeroDocumento(nro);
+					p.setNumeroDocumento(dniAux);
 					
 					try {
 						gp.guardar(p);

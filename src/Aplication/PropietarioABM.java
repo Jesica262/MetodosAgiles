@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import Class.Propietario;
+import Controller.GestorPropietario;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -18,6 +20,8 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -34,8 +38,9 @@ public class PropietarioABM extends JFrame {
 	private JTextField textTipo;
 	private JTextField textProvincia;
 	private JTextField textLocalidad;
+	private GestorPropietario gp = new GestorPropietario();
 
-	public PropietarioABM() {
+	public PropietarioABM() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("ABM - Propietario");
 		setForeground(SystemColor.inactiveCaption);
@@ -57,6 +62,15 @@ public class PropietarioABM extends JFrame {
 		
 		JComboBox comboBoxPropietario = new JComboBox();
 		comboBoxPropietario.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
+		
+		List<Propietario> propietarioX = new ArrayList<Propietario>();
+		propietarioX = gp.buscarTodos();
+		comboBoxPropietario.addItem("");
+		for(Propietario e: propietarioX)
+		{
+			
+			comboBoxPropietario.addItem(e.getNombre());
+		}
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
