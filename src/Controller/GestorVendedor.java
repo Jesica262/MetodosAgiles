@@ -3,7 +3,6 @@ package Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import Class.DTOVendedor;
 import Class.Vendedor;
 import Dao.VendedorDao;
 import Dao.VendedorDaoImplement;
@@ -20,15 +19,17 @@ public class GestorVendedor {
         return gestor;
     }
 
-	public List<DTOVendedor> obtenerTodos() {
-		List<Vendedor> lista = vendedorDao.buscarTodos();
-		ArrayList<DTOVendedor> listaDTO = new ArrayList<DTOVendedor>();
-
-		for(Vendedor v: lista) {
-			listaDTO.add(new DTOVendedor(v.getIdVendedor(),v.getNombre(),v.getApellido(),v.getDni(),v.getUsuario(),v.getClave(),v.getEmail(),v.getEliminado()));
-
-		}
-		return listaDTO;
+	public List<Vendedor> obtenerTodos() {
+		return vendedorDao.buscarTodos();
+		
+	}
+	public Boolean crearVendedor(Vendedor v) throws Exception {
+		vendedorDao.guardarVendedor(v);
+		return true;
+	}
+	public Boolean modificarVendedor(Vendedor v) throws Exception {
+		vendedorDao.actualizarVendedor(v);
+		return true;
 	}
 
 }

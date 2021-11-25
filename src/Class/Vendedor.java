@@ -2,6 +2,24 @@ package Class;
 
 public class Vendedor {
 
+	public Vendedor() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Vendedor(Integer idVendedor, String nombre, String apellido, long dni, String usuario, String clave,
+			String email, Boolean eliminado) {
+		super();
+		this.idVendedor = idVendedor;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.usuario = usuario;
+		this.clave = clave;
+		this.email = email;
+		this.eliminado = eliminado;
+	}
+
 	private Integer idVendedor;
 	private String nombre;
 	private String apellido;
@@ -78,5 +96,9 @@ public class Vendedor {
 	public Boolean getEliminado() {
 		return eliminado;
 	}
+	 @Override
+	 public String toString() {
+		 return apellido+" "+nombre+" "+dni;
+	 }
 
 }
