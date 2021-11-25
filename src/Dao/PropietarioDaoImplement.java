@@ -14,6 +14,9 @@ public class PropietarioDaoImplement implements PropietarioDao{
 	private static final String insert = "INSERT INTO propietario (nombre,apellido,dni,tipoDocumento,calle,numeroCalle,localidad,provincia,telefono,email) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private static final String selectAll = "SELECT * FROM propietario";
 	private static final String search = "SELECT * FROM propietario WHERE ";
+	private static final String serchNombre= "SELECT * FROM propietario WHERE nombre=?";
+	private static final String updateEstado = "UPDATE propietario SET eliminado = ? where idPropietario = ?";
+	private static final String update = "UPDATE propietario SET nombre = ?, apellido = ?, dni = ?, tipoDocumento = ?, calle = ?, numeroCalle = ?, localidad = ?, provincia = ?, telefono = ?, email = ? where idPropietario = ?";
 	
 	@Override
 	public void altaPropietario(Propietario p) throws Exception {
@@ -75,8 +78,14 @@ public class PropietarioDaoImplement implements PropietarioDao{
 				p.setNumeroDocumento(rs.getLong("dni"));
 				p.setTelefono(rs.getLong("telefono"));
 				p.setTipoDocumento(rs.getString("tipoDocumento"));
+				p.setEliminado(rs.getBoolean("eliminado"));
+				p.setProvincia(rs.getString("provincia"));
 				
-				lista.add(p);
+				System.out.println("   few  ewfew ge w"+ p.getEliminado());
+				if(!p.getEliminado())
+				{
+					lista.add(p);
+				}
 			}
 						
 		} catch(Exception ex) { 
@@ -92,5 +101,91 @@ public class PropietarioDaoImplement implements PropietarioDao{
 			}
 		}	
 		return lista;	
+	}
+
+	@Override
+	public Propietario buscarPorNombre(String nombre) throws Exception {
+		Propietario propietario= new Propietario();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = Conexion.getConexion();
+			pstmt= conn.prepareStatement(serchNombre);
+			pstmt.setString(1, nombre);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				propietario.setApellido(rs.getString("apellido"));
+				propietario.setNombre(rs.getString("nombre"));
+				propietario.setCalle(rs.getString("calle"));
+				propietario.setEmail(rs.getString("email"));
+				propietario.setLocalidad(rs.getString("localidad"));
+				propietario.setProvincia(rs.getString("provincia"));
+				propietario.setNumeroCalle(rs.getInt("numeroCalle"));
+				propietario.setNumeroDocumento(rs.getLong("dni"));
+				propietario.setTelefono(rs.getLong("telefono"));
+				propietario.setIdPropietario(rs.getInt("idPropietario"));
+				propietario.setTipoDocumento(rs.getString("tipoDocumento"));
+				
+			}
+		}
+		catch (Exception ex)
+		{
+			throw new Exception("Error al buscar en la Base de datos.");
+		
+	}
+		return propietario;
+	}
+
+	@Override
+	public void modificarEstado(Propietario p) throws Exception {
+		con = Conexion.conectar();
+		PreparedStatement pr = null;
+		
+			try {
+				
+				if(p.getIdPropietario() != null && p.getIdPropietario() > 0 ) {
+				pr = con.prepareStatement(updateEstado);
+				pr.setBoolean(1, p.getEliminado());
+				pr.setInt(2, p.getIdPropietario());
+				pr.executeUpdate();	
+				}
+		
+				
+			} catch(Exception ex) { 
+				
+				 throw new Exception("Error al modificacion el estado del propietario en la Base de datos.");
+			}
+	}
+
+	@Override
+	public void modificarPropietario(Propietario p) throws Exception {
+			con = Conexion.conectar();
+			PreparedStatement pr = null;
+		
+			try {
+				
+				if(p.getIdPropietario() != null && p.getIdPropietario() > 0 ) {
+				pr = con.prepareStatement(update);
+				pr.setString(1, p.getNombre());
+				pr.setString(2, p.getApellido());
+				pr.setLong(3, p.getNumeroDocumento());
+				pr.setString(4, p.getTipoDocumento());
+				pr.setString(5, p.getCalle());
+				pr.setInt(6, p.getNumeroCalle());
+				pr.setString(7, p.getLocalidad());
+				pr.setString(8, p.getProvincia());
+				pr.setLong(9, p.getTelefono());
+				pr.setString(10, p.getEmail());
+				pr.setInt(11, p.getIdPropietario());
+				pr.executeUpdate();	
+				}
+		
+			} catch(Exception ex) { 
+				
+				 throw new Exception("Error al querer modificar el Propietario en la Base de datos.");
+			}
+		
 	}
 }

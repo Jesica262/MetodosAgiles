@@ -59,9 +59,16 @@ public class MenuVendedor extends JFrame {
 		JMenuItem menuItemPropietario = new JMenuItem("ABM Propietario");
 		menuItemPropietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PropietarioABM propietario = new PropietarioABM();
-				propietario.setVisible(true);
-				propietario.setLocationRelativeTo(null);
+				PropietarioABM propietario;
+				try {
+					propietario = new PropietarioABM();
+					propietario.setVisible(true);
+					propietario.setLocationRelativeTo(null);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		menuPorpietario.add(menuItemPropietario);

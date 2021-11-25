@@ -1,8 +1,5 @@
 package Aplication;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,11 +9,11 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.border.BevelBorder;
-import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
@@ -39,6 +36,7 @@ public class PropietarioABM extends JFrame {
 	private JTextField textProvincia;
 	private JTextField textLocalidad;
 	private GestorPropietario gp = new GestorPropietario();
+	private Boolean eliminado=false;
 
 	public PropietarioABM() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,21 +58,112 @@ public class PropietarioABM extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("PROPIETARIOS:");
 		
+		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Telefono:");
+		
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Email:");
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("Apellido:");
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Dni:");
+		
+		JLabel lblNewLabel_1 = new JLabel("Nombre:");
+		
+		JLabel lblPropietarioX = new JLabel("PROPIETARIO ");
+		lblPropietarioX.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		textNombre = new JTextField();
+		textNombre.setEditable(false);
+		textNombre.setColumns(10);
+		
+		textDni = new JTextField();
+		textDni.setEditable(false);
+		textDni.setColumns(10);
+		
+		textApellido = new JTextField();
+		textApellido.setEditable(false);
+		textApellido.setColumns(10);
+		
+		textTelefono = new JTextField();
+		textTelefono.setEditable(false);
+		textTelefono.setColumns(10);
+		
+		textEmail = new JTextField();
+		textEmail.setEditable(false);
+		textEmail.setColumns(10);
+		
+		textCalle = new JTextField();
+		textCalle.setEditable(false);
+		textCalle.setColumns(10);
+
+		textNumero = new JTextField();
+		textNumero.setEditable(false);
+		textNumero.setColumns(10);
+		
+		textTipo = new JTextField();
+		textTipo.setEditable(false);
+		textTipo.setColumns(10);
+		
+		textProvincia = new JTextField();
+		textProvincia.setEditable(false);
+		textProvincia.setColumns(10);
+		
+		textLocalidad = new JTextField();
+		textLocalidad.setEditable(false);
+		textLocalidad.setColumns(10);
+		
 		JComboBox comboBoxPropietario = new JComboBox();
 		comboBoxPropietario.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
 		
 		List<Propietario> propietarioX = new ArrayList<Propietario>();
-		propietarioX = gp.buscarTodos();
-		comboBoxPropietario.addItem("");
-		for(Propietario e: propietarioX)
+		
+		System.out.println("           "+propietarioX.size());
+		
+		if(propietarioX.size()==0)
 		{
-			
-			comboBoxPropietario.addItem(e.getNombre());
+			propietarioX = gp.buscarTodos();
+			comboBoxPropietario.addItem("");
+			for(Propietario e: propietarioX)
+			{
+				
+				comboBoxPropietario.addItem(e.getNombre());
+			}
 		}
+		
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String propietario = comboBoxPropietario.getSelectedItem().toString();
+				
+				if(!comboBoxPropietario.getSelectedItem().toString().equals(""))
+				{	
+					lblPropietarioX.setText("PROPIETARIO ".concat(propietario).toUpperCase());
+					try {
+						Propietario p = gp.BuscarPorNombre(propietario);
+				
+						textNombre.setText(p.getNombre());
+						textDni.setText(p.getNumeroDocumento().toString());					
+						textApellido.setText(p.getApellido());
+						textTelefono.setText(p.getTelefono().toString());
+						textCalle.setText(p.getCalle());
+						textNumero.setText(p.getNumeroCalle().toString());
+						textTipo.setText(p.getTipoDocumento());
+						textProvincia.setText(p.getProvincia());					
+						textLocalidad.setText(p.getLocalidad());
+						textEmail.setText(p.getEmail());
+						
+						eliminado=true;
+						
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}	
+				}
+				else {
+					
+					 mensajeDeSeleccion();
+				}
 			}
 		});
 		btnBuscar.setBackground(SystemColor.controlHighlight);
@@ -124,39 +213,6 @@ public class PropietarioABM extends JFrame {
 		});
 		btnCancelar.setBackground(SystemColor.controlHighlight);
 		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Telefono:");
-		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Email:");
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Apellido:");
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Dni:");
-		
-		JLabel lblNewLabel_1 = new JLabel("Nombre:");
-		
-		JLabel lblPropietarioX = new JLabel("PROPIETARIO X");
-		lblPropietarioX.setFont(new Font("Tahoma", Font.BOLD, 15));
-		
-		textNombre = new JTextField();
-		textNombre.setEditable(false);
-		textNombre.setColumns(10);
-		
-		textDni = new JTextField();
-		textDni.setEditable(false);
-		textDni.setColumns(10);
-		
-		textApellido = new JTextField();
-		textApellido.setEditable(false);
-		textApellido.setColumns(10);
-		
-		textTelefono = new JTextField();
-		textTelefono.setEditable(false);
-		textTelefono.setColumns(10);
-		
-		textEmail = new JTextField();
-		textEmail.setEditable(false);
-		textEmail.setColumns(10);
-		
 		JButton btnCrear = new JButton("Crear Propietario");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,9 +228,37 @@ public class PropietarioABM extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ModificarPropietario modificar = new ModificarPropietario();
-				modificar.setVisible(true);
-				modificar.setLocationRelativeTo(null);
+				String propietario = comboBoxPropietario.getSelectedItem().toString();
+				
+				if(!comboBoxPropietario.getSelectedItem().toString().equals(""))
+				{	
+					try {
+						Propietario p = gp.BuscarPorNombre(propietario);
+				
+						textNombre.setText("");
+						textDni.setText("");				
+						textApellido.setText("");
+						textTelefono.setText("");
+						textCalle.setText("");
+						textNumero.setText("");
+						textTipo.setText("");
+						textProvincia.setText("");					
+						textLocalidad.setText("");
+						textEmail.setText("");
+						
+						ModificarPropietario modificar = new ModificarPropietario(p);
+						modificar.setVisible(true);
+						modificar.setLocationRelativeTo(null);
+						
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}	
+				}
+				else {
+					
+					 mensajeDeSeleccionModificacion();
+				}
 			}
 		});
 		btnModificar.setBackground(SystemColor.controlHighlight);
@@ -183,9 +267,51 @@ public class PropietarioABM extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Mensaje
+				String propietario = comboBoxPropietario.getSelectedItem().toString();
 				
-				dispose();
+				if(eliminado)
+				{
+					mensajeExitosoDeBaja();
+			
+					try {
+						Propietario p = gp.BuscarPorNombre(propietario);
+						p.setEliminado(eliminado);
+						gp.modificarEstado(p);
+					
+						eliminado=false;
+						textNombre.setText("");
+						textApellido.setText("");
+						textDni.setText("");
+						textTelefono.setText("");
+						textEmail.setText("");
+						textCalle.setText("");
+						textNumero.setText("");
+						textTipo.setText("");
+						textProvincia.setText("");					
+						textLocalidad.setText("");
+						
+						List<Propietario> propietarioM = new ArrayList<Propietario>();
+						propietarioM = gp.buscarTodos();
+						
+						//System.out.println("        vergergre   "+propietarioM.size());
+						comboBoxPropietario.setSelectedIndex(0);
+						
+						for(Propietario m: propietarioM)
+						{
+							
+							comboBoxPropietario.addItem(m.getNombre());
+						}
+						
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+						
+				}
+				else {
+					mensajeFalloDeBaja();
+					eliminado=false;
+				}
 			}
 		});
 		btnEliminar.setBackground(SystemColor.controlHighlight);
@@ -198,27 +324,8 @@ public class PropietarioABM extends JFrame {
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Calle:");
 		
-		textCalle = new JTextField();
-		textCalle.setEditable(false);
-		textCalle.setColumns(10);
-		
 		JLabel lblNewLabel_1_2_1_1 = new JLabel("Numero:");
 		
-		textNumero = new JTextField();
-		textNumero.setEditable(false);
-		textNumero.setColumns(10);
-		
-		textTipo = new JTextField();
-		textTipo.setEditable(false);
-		textTipo.setColumns(10);
-		
-		textProvincia = new JTextField();
-		textProvincia.setEditable(false);
-		textProvincia.setColumns(10);
-		
-		textLocalidad = new JTextField();
-		textLocalidad.setEditable(false);
-		textLocalidad.setColumns(10);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -368,5 +475,21 @@ public class PropietarioABM extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	public void mensajeExitosoDeBaja()
+	{
+		JOptionPane.showMessageDialog(null, "Propietario eliminado con exito");
+	}
+	public void mensajeFalloDeBaja()
+	{
+		JOptionPane.showMessageDialog(null, "Debe seleccionar un Propietario para que pueda ser eliminado");
+	}
+	public void mensajeDeSeleccion()
+	{
+		JOptionPane.showMessageDialog(null, "Debe seleccionar un Propietario para poder buscar");
+	}
+	public void mensajeDeSeleccionModificacion()
+	{
+		JOptionPane.showMessageDialog(null, "Debe seleccionar un Propietario para poder modificarlo");
 	}
 }

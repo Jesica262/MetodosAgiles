@@ -137,7 +137,7 @@ public class MenuAdministrador extends JFrame {
 		);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Yesii\\eclipse-workspace\\busqueda-de-propiedades.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(MenuAdministrador.class.getResource("/Imagenes/busqueda-de-propiedades.jpg")));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)

@@ -31,10 +31,44 @@ public class GestorPropietario {
 			}
 	}
     
+    public void modificar(Propietario p) throws Exception {
+		   try {
+			   propietarioDao.modificarPropietario(p);
+		   }
+			
+			catch (Exception ex) {
+				 throw ex;
+				
+			}
+	}
+    
+    public Propietario BuscarPorNombre(String nombre) throws Exception {
+		try {
+			return propietarioDao.buscarPorNombre(nombre);
+		   }
+			
+			catch (Exception ex) {
+				 throw ex;
+				
+			}	
+	}
+    
     public List<Propietario> buscarTodos() throws Exception{
 		
 		try {
 			return propietarioDao.buscarTodos("");
+		   }
+			
+			catch (Exception ex) {
+				 throw ex;
+				
+			}
+    }
+    
+    public void modificarEstado(Propietario p) throws Exception  {
+    	
+    	try {
+    		propietarioDao.modificarEstado(p);
 		   }
 			
 			catch (Exception ex) {

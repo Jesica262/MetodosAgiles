@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import Class.Administrador;
 import Class.Vendedor;
 
 public class VendedorDaoImplement implements VendedorDao{

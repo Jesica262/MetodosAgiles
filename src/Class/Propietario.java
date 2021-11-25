@@ -6,14 +6,22 @@ public class Propietario {
 	private String nombre;
 	private String apellido;
 	private String tipoDocumento; //ver si conviene enum
-	private long numeroDocumento;
+	private Long numeroDocumento;
 	private String calle;
 	private Integer numeroCalle;
 	private String localidad; //ver si conviene enum
 	private String provincia; //ver si conviene enum
-	private long telefono; // yo lo pondria como String
+	private Long telefono; // yo lo pondria como String
 	private String email;
 	private Boolean eliminado;
+
+	public Boolean getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(Boolean eliminado) {
+		this.eliminado = eliminado;
+	}
 
 	public Integer getIdPropietario() {
 		return idPropietario;
@@ -23,11 +31,11 @@ public class Propietario {
 		this.idPropietario = idPropietario;
 	}
 
-	public long getNumeroDocumento() {
+	public Long getNumeroDocumento() {
 		return numeroDocumento;
 	}
 
-	public void setNumeroDocumento(long numeroDocumento) {
+	public void setNumeroDocumento(Long numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 
@@ -91,11 +99,11 @@ public class Propietario {
 		this.provincia = provincia;
 	}
 
-	public long getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(long telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

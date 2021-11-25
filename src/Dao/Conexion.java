@@ -11,7 +11,7 @@ public class Conexion {
 		{
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con =DriverManager.getConnection("jdbc:mysql://localhost:3306/db_inmibiliaria", "root", "admin");
+			con =DriverManager.getConnection("jdbc:mysql://localhost:3306/db_metodosagiles", "root", "1234");
 			
 			
 		}

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Class.DTOAdministrador;
-import Class.DTOVendedor;
+import Class.Vendedor;
 import Controller.GestorVendedor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -217,7 +217,7 @@ public class InmuebleABM extends JFrame {
 		JLabel lblNewLabel = new JLabel("VENDEDORES:");
 		
 		JComboBox comboBoxVendedores = new JComboBox();
-		List<DTOVendedor> listaVendedores = GestorVendedor.get().obtenerTodos(); 
+		List<Vendedor> listaVendedores = GestorVendedor.get().obtenerTodos(); 
 		comboBoxVendedores.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
 		
 		JButton btnBuscar = new JButton("Buscar");
