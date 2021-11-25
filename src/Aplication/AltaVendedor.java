@@ -29,25 +29,6 @@ public class AltaVendedor extends JFrame {
 	private JTextField textEmail;
 	private JTextField textClave;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AltaVendedor frame = new AltaVendedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public AltaVendedor() {
 		setBackground(SystemColor.inactiveCaption);
 		setTitle("ABM - Vendedor");
