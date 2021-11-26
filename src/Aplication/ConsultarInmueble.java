@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -74,9 +75,13 @@ public class ConsultarInmueble extends JFrame {
 		
 		JComboBox comboPrecioMin = new JComboBox();
 		
+		comboPrecioMin.setModel(new DefaultComboBoxModel(new String[] {"","0","100000","250000","500000","1000000"}));
+		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Maximo:");
 		
 		JComboBox comboPrecioMax = new JComboBox();
+	
+		comboPrecioMax.setModel(new DefaultComboBoxModel(new String[] {"100000","250000","500000","1000000","5000000"}));
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Minimo:");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
@@ -159,6 +164,8 @@ public class ConsultarInmueble extends JFrame {
 		
 		JComboBox comboCantDormitorio = new JComboBox();
 		
+		comboCantDormitorio.setModel(new DefaultComboBoxModel(new String[] {"","1","2","3","4","5","6"}));
+		
 		textBarrio = new JTextField();
 		textBarrio.setColumns(10);
 		
@@ -171,6 +178,13 @@ public class ConsultarInmueble extends JFrame {
 		JComboBox comboLocalidad = new JComboBox();
 		
 		JComboBox comboTipoBarrio = new JComboBox();
+	
+		comboProvincia.setModel(new DefaultComboBoxModel(new String[] {"", "Santa fe", "Neuquen", "Jujuy", "Salta", "Catamarca", "Rio Negro", "La Pampa", "Misiones", "Corriente", "Santiago de estero", "Tucuman", "Entre Rios"}));
+	
+		comboLocalidad.setModel(new DefaultComboBoxModel(new String[] {"", "Rosario", "Santa Fe", "Resistencia", "Santo Tome", "Rincon", "Sauce"}));
+		
+		comboTipoBarrio.setModel(new DefaultComboBoxModel(new String[] {"", "Departamento", "Casa", "Local oficina", "Terreno", "Quinta", "Galpón"}));
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

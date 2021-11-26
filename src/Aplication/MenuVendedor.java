@@ -87,16 +87,6 @@ public class MenuVendedor extends JFrame {
 		});
 		menuInmueble.add(menuItemConsultaInmueble);
 		
-		JMenuItem menuItemInmueble = new JMenuItem("ABM Inmueble");
-		menuItemInmueble.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InmuebleABM inmueble = new InmuebleABM();
-				inmueble.setVisible(true);
-				inmueble.setLocationRelativeTo(null);
-			}
-		});
-		menuInmueble.add(menuItemInmueble);
-		
 		JMenuItem menuItemCatalogo = new JMenuItem("Cat\u00E1logo de Inmuebles");
 		menuItemCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
