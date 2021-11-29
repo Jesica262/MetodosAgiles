@@ -6,9 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Class.Vendedor;
+import Controller.GestorVendedor;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -28,6 +33,8 @@ public class AltaVendedor extends JFrame {
 	private JTextField textApellido;
 	private JTextField textEmail;
 	private JTextField textClave;
+	private GestorVendedor gv= GestorVendedor.get();
+	private JTextField textUsuario;
 
 	/**
 	 * Launch the application.
@@ -69,7 +76,9 @@ public class AltaVendedor extends JFrame {
 		btnCancelar.setBackground(SystemColor.controlHighlight);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				VendedorABM vendedorABM = new VendedorABM();
+				vendedorABM.setVisible(true);
+				vendedorABM.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
@@ -78,8 +87,27 @@ public class AltaVendedor extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(gv.validacionVacios(textNombre.getText(),textDni.getText(), textApellido.getText(), textEmail.getText(),textUsuario.getText(), textClave.getText())) {
+					Vendedor v=new Vendedor(textNombre.getText(), textApellido.getText(), Long.parseLong(textDni.getText()), textUsuario.getText(), textClave.getText(), textEmail.getText(), false);
+					
+					try {
+						gv.crearVendedor(v);
+						mensajeExitosoDeAlta();
+						//volvemos a la pantalla anterior
+						VendedorABM vendedorABM = new VendedorABM();
+						vendedorABM.setVisible(true);
+						vendedorABM.setLocationRelativeTo(null);
+						dispose();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						informarErrorDeAlta();
+					}
+					
+					
+				}else informarErrorDeAlta();
 				//Mensaje 
-				dispose();
+				
 			}
 		});
 		btnAceptar.setBackground(SystemColor.controlHighlight);
@@ -143,14 +171,21 @@ public class AltaVendedor extends JFrame {
 		
 		textNombre = new JTextField();
 		textNombre.setColumns(10);
+		
+		JLabel labelUsuario = new JLabel("Usuario:");
+		
+		textUsuario = new JTextField();
+		textUsuario.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(89)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+						.addComponent(labelUsuario, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textUsuario, GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1_1_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
@@ -180,11 +215,15 @@ public class AltaVendedor extends JFrame {
 					.addComponent(lblNewLabel_1_1_1_1)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblNewLabel_1_1_1_1_1)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(labelUsuario)
+					.addGap(7)
+					.addComponent(textUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(lblNewLabel_1_1_1_1_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(39, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 		panel_1.setLayout(gl_panel_1);
@@ -199,4 +238,13 @@ public class AltaVendedor extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+public void informarErrorDeAlta() {
+		
+		JOptionPane.showMessageDialog(null, "No se pudo dar de alta el vendedor. Verifique que todos los campos esten correctos.");
+		
+	}
+public void mensajeExitosoDeAlta()
+{
+	JOptionPane.showMessageDialog(null, "Vendedor dado de alta con exito.");
+}
 }

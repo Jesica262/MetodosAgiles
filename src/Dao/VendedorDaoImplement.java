@@ -11,7 +11,7 @@ import Class.Vendedor;
 public class VendedorDaoImplement implements VendedorDao{
 	private Connection con;
 	private static final String insert = "INSERT INTO vendedor (nombre,apellido,email,dni,usuario,clave,eliminado) VALUES (?,?,?,?,?,?,?)";
-	private static final String delete = "UPDATE vendedor SET eliminado=1 WHERE id_administrador = ?";
+	private static final String delete = "UPDATE vendedor SET eliminado=true WHERE idVendedor = ?";
 	private static final String select_todos ="SELECT * FROM vendedor WHERE eliminado=0";
 	private static final String update="UPDATE vendedor SET nombre=?, apellido=?. email=?, dni=?, usuario=?, clave=? WHERE idVendedor= ?";
 
@@ -31,6 +31,7 @@ public class VendedorDaoImplement implements VendedorDao{
 				a.setNombre(rs.getString("nombre"));
 				a.setApellido(rs.getString("apellido"));
 				a.setDni(rs.getLong("dni"));
+				a.setEmail(rs.getString("email"));
 				a.setUsuario(rs.getString("usuario"));
 				a.setClave(rs.getString("clave"));
 				a.setEliminado(rs.getBoolean("eliminado"));

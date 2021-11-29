@@ -98,9 +98,9 @@ public class ClienteABM extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ModificarVendedor modificar = new ModificarVendedor();
-				modificar.setVisible(true);
-				modificar.setLocationRelativeTo(null);
+//				ModificarVendedor modificar = new ModificarVendedor();
+//				modificar.setVisible(true);
+//				modificar.setLocationRelativeTo(null);
 			}
 		});
 		btnModificar.setBackground(SystemColor.controlHighlight);

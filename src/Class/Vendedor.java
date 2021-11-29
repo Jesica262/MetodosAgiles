@@ -19,11 +19,23 @@ public class Vendedor {
 		this.email = email;
 		this.eliminado = eliminado;
 	}
+	public Vendedor(String nombre, String apellido, Long dni, String usuario, String clave,
+			String email, Boolean eliminado) {
+		super();
+	
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.usuario = usuario;
+		this.clave = clave;
+		this.email = email;
+		this.eliminado = eliminado;
+	}
 
 	private Integer idVendedor;
 	private String nombre;
 	private String apellido;
-	private long dni;
+	private Long dni;
 	private String usuario;
 	private String clave;
 	private String email;
@@ -57,11 +69,11 @@ public class Vendedor {
 		this.email = email;
 	}
 
-	public long getDni() {
+	public Long getDni() {
 		return dni;
 	}
 
-	public void setDni(long dni) {
+	public void setDni(Long dni) {
 		this.dni = dni;
 	}
 

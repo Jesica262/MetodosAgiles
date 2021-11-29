@@ -9,6 +9,7 @@ import Controller.GestorVendedor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -30,6 +31,8 @@ public class VendedorABM extends JFrame {
 	private JTextField textEmail;
 	private JTextField textClave;
 	private DTOAdministrador dtoAdministrador;
+	private JTextField textUsuario;
+	private GestorVendedor gv= GestorVendedor.get();
 
 	public VendedorABM() {
 		setBackground(SystemColor.inactiveCaption);
@@ -90,12 +93,15 @@ public class VendedorABM extends JFrame {
 		textClave = new JTextField();
 		textClave.setEditable(false);
 		textClave.setColumns(10);
+		JComboBox comboBoxVendedores = new JComboBox();
+		List<Vendedor> listaVendedores = GestorVendedor.get().obtenerTodos(); 
+		for(Vendedor vend: listaVendedores) comboBoxVendedores.addItem(vend);
 		
 		JButton btnModificar = new JButton("Modificar Vendedor");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ModificarVendedor modificar = new ModificarVendedor();
+				ModificarVendedor modificar = new ModificarVendedor((Vendedor) comboBoxVendedores.getSelectedItem());
 				modificar.setVisible(true);
 				modificar.setLocationRelativeTo(null);
 			}
@@ -106,6 +112,18 @@ public class VendedorABM extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				try {
+					gv.eliminarVendedor((Vendedor) comboBoxVendedores.getSelectedItem());
+					mensajeExitosoDeBaja();
+					VendedorABM vendedorABM = new VendedorABM();
+					vendedorABM.setVisible(true);
+					vendedorABM.setLocationRelativeTo(null);
+					dispose();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					mensajeFalloDeBaja();
+				}
 				//"Mensaje"
 				dispose();
 			}
@@ -119,37 +137,54 @@ public class VendedorABM extends JFrame {
 				AltaVendedor alta = new AltaVendedor();
 				alta.setVisible(true);
 				alta.setLocationRelativeTo(null);
+				dispose();
 				
 			}
 		});
 		btnCrear.setBackground(SystemColor.controlHighlight);
+		
+		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Usuario:");
+		
+		textUsuario = new JTextField();
+		textUsuario.setEditable(false);
+		textUsuario.setColumns(10);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(39)
 					.addComponent(lblVendedorX, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(345, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 					.addGap(73)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1_1_1_1)
-						.addComponent(lblNewLabel_1_1_1_1_1)
-						.addComponent(textNombre, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textDni, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textApellido, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-						.addComponent(textClave, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
-					.addGap(63)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnCancelar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnEliminar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnCrear, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-						.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(32))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(textUsuario, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblNewLabel_1_1_1_1_1)
+							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(textClave, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+								.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+								.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+								.addComponent(lblNewLabel_1_1_1, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+								.addComponent(lblNewLabel_1_1_1_1)
+								.addComponent(textNombre, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+								.addComponent(textDni, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+								.addComponent(textApellido, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+								.addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+							.addGap(63)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnCancelar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnEliminar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnCrear, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+								.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(30))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblNewLabel_1_1_1_1_1_1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -173,19 +208,23 @@ public class VendedorABM extends JFrame {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_1_1_1_1)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNewLabel_1_1_1_1_1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(btnCrear)
 							.addGap(18)
 							.addComponent(btnModificar)
 							.addGap(18)
 							.addComponent(btnEliminar)))
-					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-					.addComponent(btnCancelar)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblNewLabel_1_1_1_1_1_1)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(lblNewLabel_1_1_1_1_1)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCancelar)
+						.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -208,12 +247,30 @@ public class VendedorABM extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("VENDEDORES:");
 		
-		JComboBox comboBoxVendedores = new JComboBox();
-		List<Vendedor> listaVendedores = GestorVendedor.get().obtenerTodos(); 
-		for(Vendedor vend: listaVendedores) comboBoxVendedores.addItem(vend);
+		
 		comboBoxVendedores.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Vendedor vendedor= (Vendedor) comboBoxVendedores.getSelectedItem();
+				
+				if(!comboBoxVendedores.getSelectedItem().toString().equals(""))
+				{	
+					textNombre.setText(vendedor.getNombre());
+					textDni.setText(vendedor.getDni().toString());
+					textApellido.setText(vendedor.getApellido());
+					textEmail.setText(vendedor.getEmail());
+					textUsuario.setText(vendedor.getUsuario());
+					textClave.setText(vendedor.getClave());
+					
+				}else {
+					
+					 mensajeDeSeleccion();
+				}
+				
+			}
+		});
 		btnBuscar.setBackground(SystemColor.controlHighlight);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -244,6 +301,18 @@ public class VendedorABM extends JFrame {
 	public VendedorABM(DTOAdministrador dtoAdmin) {
 		// TODO Auto-generated constructor stub
 		dtoAdministrador=dtoAdmin;
+	}
+	public void mensajeDeSeleccion()
+	{
+		JOptionPane.showMessageDialog(null, "Debe seleccionar un Vendedor para poder buscar");
+	}
+	public void mensajeExitosoDeBaja()
+	{
+		JOptionPane.showMessageDialog(null, "Vendedor eliminado con exito");
+	}
+	public void mensajeFalloDeBaja()
+	{
+		JOptionPane.showMessageDialog(null, "Error al intentar eliminar Vendedor, intente en otro momento");
 	}
 }
 

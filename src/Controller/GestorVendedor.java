@@ -31,6 +31,19 @@ public class GestorVendedor {
 		vendedorDao.actualizarVendedor(v);
 		return true;
 	}
+	public Boolean eliminarVendedor(Vendedor v) throws Exception {
+		vendedorDao.darDeBajaVendedor(v);
+		return true;
+	}
+    public boolean validacionVacios(String nombre, String dni,String apellido, String email, String usuario, String clave) {
+		
+		if(nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || clave.isEmpty() || usuario.isEmpty()) {
+			System.out.println("El campo se encuentra vacío"); 
+			return false;
+		}
+		
+		return true;
+    }
 
 }
 
