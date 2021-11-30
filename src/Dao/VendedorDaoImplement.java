@@ -13,7 +13,7 @@ public class VendedorDaoImplement implements VendedorDao{
 	private static final String insert = "INSERT INTO vendedor (nombre,apellido,email,dni,usuario,clave,eliminado) VALUES (?,?,?,?,?,?,?)";
 	private static final String delete = "UPDATE vendedor SET eliminado=true WHERE idVendedor = ?";
 	private static final String select_todos ="SELECT * FROM vendedor WHERE eliminado=0";
-	private static final String update="UPDATE vendedor SET nombre=?, apellido=?. email=?, dni=?, usuario=?, clave=? WHERE idVendedor= ?";
+	private static final String update="UPDATE vendedor SET nombre=?, apellido=?, email=?, dni=?, usuario=?, clave=? WHERE idVendedor= ?";
 
 	@Override
 	public List<Vendedor> buscarTodos() {
