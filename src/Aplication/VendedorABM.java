@@ -104,6 +104,7 @@ public class VendedorABM extends JFrame {
 				ModificarVendedor modificar = new ModificarVendedor((Vendedor) comboBoxVendedores.getSelectedItem());
 				modificar.setVisible(true);
 				modificar.setLocationRelativeTo(null);
+				dispose();
 			}
 		});
 		btnModificar.setBackground(SystemColor.controlHighlight);

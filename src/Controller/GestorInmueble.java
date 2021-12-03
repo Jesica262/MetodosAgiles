@@ -1,12 +1,23 @@
 package Controller;
 
+import Class.Inmueble;
+import Dao.InmuebleDao;
+
 public class GestorInmueble {
 	static private GestorInmueble gestor = new GestorInmueble();
+	private InmuebleDao inmuebleDao;
 	 
-    private GestorInmueble() { }
+    private GestorInmueble() {
+    	inmuebleDao=new InmuebleDao();
+    }
 
     static public GestorInmueble get() {
         return gestor;
+    }
+    
+    public Boolean crearInmueble(Inmueble i) {
+    	inmuebleDao.guardarInmueble(i);
+    	return true;
     }
 
 }

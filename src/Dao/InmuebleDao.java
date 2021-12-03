@@ -1,5 +1,9 @@
 package Dao;
 
-public class InmuebleDao {
+import Class.Inmueble;
+
+public interface InmuebleDao {
+
+	public Boolean guardarInmueble(Inmueble i);
 
 }
