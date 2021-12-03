@@ -8,7 +8,7 @@ import Class.Inmueble;
 
 public class InmuebleDaoImplement implements InmuebleDao{
 	private Connection con;
-	private static final String insert = "INSERT INTO inmueble (fechaDeCarga,estado,provincia,localidad,calle,numero,pisoDepartamento,barrio,tipoInmueble,precioVenta,orientacion,frente,fondo,superficieTerreno,gasNatural,antiguedad,aguaCorriente,aguaCaliente,cloacas,patio,pavimento,piscina,baños,dormitorios,lavadero,garage,propiedadHorizontal,observaciones,eliminado,reservado,vendido,foto,idPropietario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String insert = "INSERT INTO inmueble (fechaDeCarga,estado,provincia,localidad,calle,numero,pisoDepartamento,barrio,tipoInmueble,precioVenta,orientacion,frente,fondo,superficieTerreno,gasNatural,antiguedad,aguaCorriente,aguaCaliente,cloacas,patio,pavimento,piscina,baños,dormitorios,lavadero,garage,propiedadHorizontal,observaciones,eliminado,reservado,vendido,foto,idPropietario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String delete = "UPDATE inmueble SET eliminado=true WHERE idVendedor = ?";
 	private static final String select_todos ="SELECT * FROM inmueble WHERE eliminado=0";
 	private static final String update="UPDATE inmueble SET nombre=?, apellido=?, email=?, dni=?, usuario=?, clave=? WHERE idVendedor= ?";
@@ -53,10 +53,9 @@ public class InmuebleDaoImplement implements InmuebleDao{
 		        pr.setBoolean(29, i.getEliminado());
 		        pr.setBoolean(30, i.getReservado());
 		        pr.setBoolean(31, i.getVendido());
-		        //pr.setBlob(parameterIndex, inputStream, length);
+		        //pr.setBlob(parameterIndex, inputStream, length);   //agregar otro ? en la sentencia insert al arreglar esto
 		        pr.setInt(33, i.getPropietario().getIdPropietario());
 		        
-				
 				pr.executeUpdate();		
 			
 		} catch(Exception ex) { 

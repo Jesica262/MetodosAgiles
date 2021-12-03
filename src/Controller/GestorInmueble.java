@@ -8,14 +8,14 @@ public class GestorInmueble {
 	private InmuebleDao inmuebleDao;
 	 
     private GestorInmueble() {
-    	inmuebleDao=new InmuebleDao();
+    	inmuebleDao = new InmuebleDao();
     }
 
     static public GestorInmueble get() {
         return gestor;
     }
     
-    public Boolean crearInmueble(Inmueble i) {
+    public Boolean crearInmueble(Inmueble i) throws Exception {
     	inmuebleDao.guardarInmueble(i);
     	return true;
     }
