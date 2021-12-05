@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Class.Inmueble;
+import Class.Propietario;
+import Controller.GestorInmueble;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -15,6 +20,8 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
@@ -25,7 +32,8 @@ public class ConsultarInmueble extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textBarrio;
-
+	private GestorInmueble gI = new GestorInmueble();
+	
 	public ConsultarInmueble() {
 		setBackground(SystemColor.inactiveCaption);
 		setTitle("ABM - Vendedor");
@@ -43,6 +51,29 @@ public class ConsultarInmueble extends JFrame {
 		JLabel lblVendedorX = new JLabel("CONSULTAR INMUEBLE");
 		lblVendedorX.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
+		JComboBox comboCantDormitorio = new JComboBox();
+		
+		comboCantDormitorio.setModel(new DefaultComboBoxModel(new String[] {"","1","2","3","4","5","6"}));
+		
+		textBarrio = new JTextField();
+		textBarrio.setColumns(10);
+		
+		JComboBox comboProvincia = new JComboBox();
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Localidad:");
+		
+		JLabel lblNewLabel_1_2_1 = new JLabel("Tipo:");
+		
+		JComboBox comboLocalidad = new JComboBox();
+		
+		JComboBox comboTipoBarrio = new JComboBox();
+	
+		comboProvincia.setModel(new DefaultComboBoxModel(new String[] {"", "Santa fe", "Neuquen", "Jujuy", "Salta", "Catamarca", "Rio Negro", "La Pampa", "Misiones", "Corriente", "Santiago de estero", "Tucuman", "Entre Rios"}));
+	
+		comboLocalidad.setModel(new DefaultComboBoxModel(new String[] {"", "Rosario", "Santa Fe", "Resistencia", "Santo Tome", "Rincon", "Sauce"}));
+		
+		comboTipoBarrio.setModel(new DefaultComboBoxModel(new String[] {"", "L", "C", "D", "T", "Q", "G"}));
+		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBackground(SystemColor.controlHighlight);
 		btnCancelar.addActionListener(new ActionListener() {
@@ -56,9 +87,21 @@ public class ConsultarInmueble extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Mensaje 
-				dispose();
-			}
+				/*	List<Inmueble> inmueble = new ArrayList<Inmueble>();
+				
+				
+				try {
+					inmueble = gI.buscarTodos();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}*/		
+				String provincia = comboProvincia.getSelectedItem().toString();
+				String localidad = comboLocalidad.getSelectedItem().toString();
+				String barrio = comboTipoBarrio.getSelectedItem().toString();
+				String dormitorio = comboCantDormitorio.getSelectedItem().toString();
+				
+				
+			}	
 		});
 		btnBuscar.setBackground(SystemColor.controlHighlight);
 		
@@ -81,7 +124,7 @@ public class ConsultarInmueble extends JFrame {
 		
 		JComboBox comboPrecioMax = new JComboBox();
 	
-		comboPrecioMax.setModel(new DefaultComboBoxModel(new String[] {"100000","250000","500000","1000000","5000000"}));
+		comboPrecioMax.setModel(new DefaultComboBoxModel(new String[] {"", "100000", "250000", "500000", "1000000", "5000000"}));
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Minimo:");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
@@ -161,29 +204,6 @@ public class ConsultarInmueble extends JFrame {
 		JLabel lblNewLabel_1_2 = new JLabel("Barrio:");
 		
 		JLabel lblNewLabel_1_2_2 = new JLabel("Cant. Dormitorios:");
-		
-		JComboBox comboCantDormitorio = new JComboBox();
-		
-		comboCantDormitorio.setModel(new DefaultComboBoxModel(new String[] {"","1","2","3","4","5","6"}));
-		
-		textBarrio = new JTextField();
-		textBarrio.setColumns(10);
-		
-		JComboBox comboProvincia = new JComboBox();
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Localidad:");
-		
-		JLabel lblNewLabel_1_2_1 = new JLabel("Tipo:");
-		
-		JComboBox comboLocalidad = new JComboBox();
-		
-		JComboBox comboTipoBarrio = new JComboBox();
-	
-		comboProvincia.setModel(new DefaultComboBoxModel(new String[] {"", "Santa fe", "Neuquen", "Jujuy", "Salta", "Catamarca", "Rio Negro", "La Pampa", "Misiones", "Corriente", "Santiago de estero", "Tucuman", "Entre Rios"}));
-	
-		comboLocalidad.setModel(new DefaultComboBoxModel(new String[] {"", "Rosario", "Santa Fe", "Resistencia", "Santo Tome", "Rincon", "Sauce"}));
-		
-		comboTipoBarrio.setModel(new DefaultComboBoxModel(new String[] {"", "Departamento", "Casa", "Local oficina", "Terreno", "Quinta", "Galpón"}));
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(

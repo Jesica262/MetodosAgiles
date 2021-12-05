@@ -36,7 +36,6 @@ public class PropietarioABM extends JFrame {
 	private JTextField textProvincia;
 	private JTextField textLocalidad;
 	private GestorPropietario gp = new GestorPropietario();
-	private Boolean eliminado=false;
 
 	public PropietarioABM() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,17 +115,13 @@ public class PropietarioABM extends JFrame {
 		
 		List<Propietario> propietarioX = new ArrayList<Propietario>();
 		
-		System.out.println("           "+propietarioX.size());
 		
-		if(propietarioX.size()==0)
+		propietarioX = gp.buscarTodos();
+		comboBoxPropietario.addItem("");
+		for(Propietario e: propietarioX)
 		{
-			propietarioX = gp.buscarTodos();
-			comboBoxPropietario.addItem("");
-			for(Propietario e: propietarioX)
-			{
 				
-				comboBoxPropietario.addItem(e.getNombre());
-			}
+			comboBoxPropietario.addItem(e.getNombre());
 		}
 		
 		
@@ -152,8 +147,6 @@ public class PropietarioABM extends JFrame {
 						textProvincia.setText(p.getProvincia());					
 						textLocalidad.setText(p.getLocalidad());
 						textEmail.setText(p.getEmail());
-						
-						eliminado=true;
 						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
@@ -269,50 +262,26 @@ public class PropietarioABM extends JFrame {
 				
 				String propietario = comboBoxPropietario.getSelectedItem().toString();
 				
-				if(eliminado)
-				{
-					mensajeExitosoDeBaja();
-			
-					try {
-						Propietario p = gp.BuscarPorNombre(propietario);
-						p.setEliminado(eliminado);
-						gp.modificarEstado(p);
+				try {
+					Propietario p = gp.BuscarPorNombre(propietario);
+					p.setEliminado(true);
+					gp.modificarEstado(p);
 					
-						eliminado=false;
-						textNombre.setText("");
-						textApellido.setText("");
-						textDni.setText("");
-						textTelefono.setText("");
-						textEmail.setText("");
-						textCalle.setText("");
-						textNumero.setText("");
-						textTipo.setText("");
-						textProvincia.setText("");					
-						textLocalidad.setText("");
+					mensajeExitosoDeBaja();
+					dispose();
 						
-						List<Propietario> propietarioM = new ArrayList<Propietario>();
-						propietarioM = gp.buscarTodos();
+					PropietarioABM abm = new PropietarioABM();
+					abm.setVisible(true);
+					abm.setLocationRelativeTo(null);
 						
-						//System.out.println("        vergergre   "+propietarioM.size());
-						comboBoxPropietario.setSelectedIndex(0);
-						
-						for(Propietario m: propietarioM)
-						{
-							
-							comboBoxPropietario.addItem(m.getNombre());
-						}
-						
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-						
-				}
-				else {
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 					mensajeFalloDeBaja();
-					eliminado=false;
 				}
+						
 			}
+				
 		});
 		btnEliminar.setBackground(SystemColor.controlHighlight);
 		

@@ -1,6 +1,9 @@
 package Controller;
 
+import java.util.List;
+
 import Class.Inmueble;
+import Class.Propietario;
 import Dao.InmuebleDao;
 import Dao.InmuebleDaoImplement;
 
@@ -8,7 +11,7 @@ public class GestorInmueble {
 	static private GestorInmueble gestor = new GestorInmueble();
 	private InmuebleDao inmuebleDao;
 	 
-    private GestorInmueble() {
+    public GestorInmueble() {
     	inmuebleDao = new InmuebleDaoImplement();
     }
 
@@ -26,6 +29,18 @@ public class GestorInmueble {
     }
     public Boolean modificarInmueble(Inmueble i) throws Exception {
     	return inmuebleDao.actualizarInmueble(i);
+    }
+    
+    public List<Inmueble> buscarTodos() throws Exception{
+		
+		try {
+			return inmuebleDao.buscarTodos("");
+		   }
+			
+			catch (Exception ex) {
+				 throw ex;
+				
+			}
     }
 
 }

@@ -40,7 +40,7 @@ public class PropietarioDaoImplement implements PropietarioDao{
 			
 		} catch(Exception ex) { 
 			
-			 throw new Exception("Error al guardar una estacion en la Base de datos.");
+			 throw new Exception("Error al guardar un propietario en la Base de datos.");
 		}finally {
 			try {
 				con.close();
@@ -81,7 +81,6 @@ public class PropietarioDaoImplement implements PropietarioDao{
 				p.setEliminado(rs.getBoolean("eliminado"));
 				p.setProvincia(rs.getString("provincia"));
 				
-				System.out.println("   few  ewfew ge w"+ p.getEliminado());
 				if(!p.getEliminado())
 				{
 					lista.add(p);
@@ -90,7 +89,7 @@ public class PropietarioDaoImplement implements PropietarioDao{
 						
 		} catch(Exception ex) { 
 			
-			 throw new Exception("Error al buscar todas las estaciones en la Base de datos.");
+			 throw new Exception("Error al buscar todos los propietarios en la Base de datos.");
 		}finally {
 			try {
 				if(rs!=null) rs.close();

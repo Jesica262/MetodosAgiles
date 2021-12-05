@@ -56,7 +56,7 @@ public class ModificarPropietario extends JFrame {
 		});
 		btnCancelar.setBackground(SystemColor.controlHighlight);
 		
-		JLabel lblPropietarioX = new JLabel("MODIFICAR DE PROPIETARIO");
+		JLabel lblPropietarioX = new JLabel("MODIFICAR PROPIETARIO");
 		lblPropietarioX.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JPanel panel = new JPanel();

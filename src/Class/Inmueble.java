@@ -20,7 +20,7 @@ public class Inmueble {
 	private Float frente;
 	private Float fondo;
 	private Float superficieTerreno;
-	private Boolean propiedadHorizontal;
+	private String propiedadHorizontal;
 	private Float superficieEdificada;
 	private Integer antiguedad;
 	private Integer dormitorios;
@@ -43,7 +43,7 @@ public class Inmueble {
 	
 	public Inmueble(Integer codigo, LocalDate fechaCarga, String estado, String provincia, String calle,
 			Integer numeroCalle, String pisoDepartamento, String barrio, String tipoInmueble, Float precioVenta,
-			String orientacion, Float frente, Float fondo, Float superficieTerreno, Boolean propiedadHorizontal,
+			String orientacion, Float frente, Float fondo, Float superficieTerreno, String propiedadHorizontal,
 			Float superficieEdificada, Integer antiguedad, Integer dormitorios, Integer baños, Boolean garageCochera,
 			Boolean patio, Boolean piscina, Boolean aguaCorriente, Boolean cloacas, Boolean gasNatural,
 			Boolean aguaCaliente, Boolean telefono, Boolean lavadero, Boolean pavimento, String observaciones,
@@ -89,7 +89,7 @@ public class Inmueble {
 
 	public Inmueble(LocalDate fechaCarga, String estado, String provincia, String calle, Integer numeroCalle,
 			String pisoDepartamento, String barrio, String tipoInmueble, Float precioVenta, String orientacion,
-			Float frente, Float fondo, Float superficieTerreno, Boolean propiedadHorizontal, Float superficieEdificada,
+			Float frente, Float fondo, Float superficieTerreno, String propiedadHorizontal, Float superficieEdificada,
 			Integer antiguedad, Integer dormitorios, Integer baños, Boolean garageCochera, Boolean patio,
 			Boolean piscina, Boolean aguaCorriente, Boolean cloacas, Boolean gasNatural, Boolean aguaCaliente,
 			Boolean telefono, Boolean lavadero, Boolean pavimento, String observaciones, Boolean eliminado,
@@ -223,7 +223,7 @@ public class Inmueble {
 
 
 
-	public Boolean getPropiedadHorizontal() {
+	public String getPropiedadHorizontal() {
 		return propiedadHorizontal;
 	}
 
@@ -346,8 +346,215 @@ public class Inmueble {
 	public String getLocalidad() {
 		return localidad;
 	}
-	
-	
 
-	
+
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+
+
+	public void setFechaCarga(LocalDate fechaCarga) {
+		this.fechaCarga = fechaCarga;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+
+
+	public void setNumeroCalle(Integer numeroCalle) {
+		this.numeroCalle = numeroCalle;
+	}
+
+
+
+	public void setPisoDepartamento(String pisoDepartamento) {
+		this.pisoDepartamento = pisoDepartamento;
+	}
+
+
+
+	public void setBarrio(String barrio) {
+		this.barrio = barrio;
+	}
+
+
+
+	public void setTipoInmueble(String tipoInmueble) {
+		this.tipoInmueble = tipoInmueble;
+	}
+
+
+
+	public void setPrecioVenta(Float precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
+
+
+	public void setOrientacion(String orientacion) {
+		this.orientacion = orientacion;
+	}
+
+
+
+	public void setFrente(Float frente) {
+		this.frente = frente;
+	}
+
+
+
+	public void setFondo(Float fondo) {
+		this.fondo = fondo;
+	}
+
+
+
+	public void setSuperficieTerreno(Float superficieTerreno) {
+		this.superficieTerreno = superficieTerreno;
+	}
+
+
+
+	public void setPropiedadHorizontal(String string) {
+		this.propiedadHorizontal = string;
+	}
+
+
+
+	public void setSuperficieEdificada(Float superficieEdificada) {
+		this.superficieEdificada = superficieEdificada;
+	}
+
+
+
+	public void setAntiguedad(Integer antiguedad) {
+		this.antiguedad = antiguedad;
+	}
+
+
+
+	public void setDormitorios(Integer dormitorios) {
+		this.dormitorios = dormitorios;
+	}
+
+
+
+	public void setBaños(Integer baños) {
+		this.baños = baños;
+	}
+
+
+
+	public void setGarageCochera(Boolean garageCochera) {
+		this.garageCochera = garageCochera;
+	}
+
+
+
+	public void setPatio(Boolean patio) {
+		this.patio = patio;
+	}
+
+
+
+	public void setPiscina(Boolean piscina) {
+		this.piscina = piscina;
+	}
+
+
+
+	public void setAguaCorriente(Boolean aguaCorriente) {
+		this.aguaCorriente = aguaCorriente;
+	}
+
+
+
+	public void setCloacas(Boolean cloacas) {
+		this.cloacas = cloacas;
+	}
+
+
+
+	public void setGasNatural(Boolean gasNatural) {
+		this.gasNatural = gasNatural;
+	}
+
+
+
+	public void setAguaCaliente(Boolean aguaCaliente) {
+		this.aguaCaliente = aguaCaliente;
+	}
+
+
+
+	public void setTelefono(Boolean telefono) {
+		this.telefono = telefono;
+	}
+
+
+
+	public void setLavadero(Boolean lavadero) {
+		this.lavadero = lavadero;
+	}
+
+
+
+	public void setPavimento(Boolean pavimento) {
+		this.pavimento = pavimento;
+	}
+
+
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+
+
+	public void setEliminado(Boolean eliminado) {
+		this.eliminado = eliminado;
+	}
+
+
+
+	public void setReservado(Boolean reservado) {
+		this.reservado = reservado;
+	}
+
+
+
+	public void setVendido(Boolean vendido) {
+		this.vendido = vendido;
+	}
+
+
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+		
 }

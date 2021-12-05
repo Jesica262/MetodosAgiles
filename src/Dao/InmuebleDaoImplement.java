@@ -3,8 +3,13 @@ package Dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Class.Inmueble;
+import Class.Propietario;
 
 public class InmuebleDaoImplement implements InmuebleDao{
 	private Connection con;
@@ -12,8 +17,9 @@ public class InmuebleDaoImplement implements InmuebleDao{
 	private static final String delete = "UPDATE inmueble SET eliminado=true WHERE codigo = ?";
 	private static final String select_todos ="SELECT * FROM inmueble WHERE eliminado=0";
 	private static final String update="UPDATE inmueble SET fechaDeCarga=?, estado=?, provincia=?, localidad=?, calle=?, numero=?, pisoDepartamento=?, barrio=?, tipoInmueble=?, precioVenta=?, orientacion=?, frente=?, fondo=?, superficieTerreno=?, gasNatural=?, antiguedad=?, aguaCorriente=?, aguaCaliente=?, cloacas=?, patio=?, pavimento=?, piscina=?, baños=?, dormitorios=?, lavadero=?, garage=?, propiedadHorizontal=?, observaciones=?, eliminado=?, reservado=?, vendido=?, idPropietario=? WHERE codigo= ?";
-
-
+	private static final String search = "SELECT * FROM inmueble WHERE ";
+	private static final String selectAll = "SELECT * FROM inmueble";
+	
 	@Override
 	public Boolean guardarInmueble(Inmueble i) throws Exception {
 		
@@ -155,6 +161,79 @@ public class InmuebleDaoImplement implements InmuebleDao{
 		}
 		
 		return true;
+	}
+
+
+	@Override
+	public List<Inmueble> buscarTodos(String s) throws Exception {
+		List<Inmueble> lista = new ArrayList<Inmueble>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = Conexion.getConexion();
+			if(!s.isEmpty()) {
+				pstmt= conn.prepareStatement(search);
+				pstmt.setString(1, s);
+				rs = pstmt.executeQuery();
+			}
+			else {
+				pstmt= conn.prepareStatement(selectAll);
+				rs = pstmt.executeQuery();
+			}
+			while(rs.next()) {
+				Inmueble i = new Inmueble();
+				
+				i.setAguaCaliente(rs.getBoolean("aguaCaliente"));
+				i.setAguaCorriente(rs.getBoolean("aguaCorriente"));
+				i.setAntiguedad(rs.getInt("antiguedad"));
+				i.setBarrio(rs.getString("barrio"));
+				i.setBaños(rs.getInt("baños"));
+				i.setCalle(rs.getString("calle"));
+				i.setCloacas(rs.getBoolean("cloacas"));
+				i.setDormitorios(rs.getInt("dormitorios"));
+				i.setEliminado(rs.getBoolean("eliminado"));
+				i.setEstado(rs.getString("estado"));
+				//i.setFechaCarga(rs.getDate("fechaDeCarga"));
+				i.setFondo(rs.getFloat("fondo"));
+				i.setFrente(rs.getFloat("frente"));
+				i.setGarageCochera(rs.getBoolean("garage"));
+				i.setGasNatural(rs.getBoolean("gasNatural"));
+				i.setLavadero(rs.getBoolean("lavadero"));
+				i.setLocalidad(rs.getString("localidad"));
+				i.setNumeroCalle(rs.getInt("numero"));
+				i.setObservaciones(rs.getString("observaciones"));
+				i.setOrientacion(rs.getString("orientacion"));
+				i.setPatio(rs.getBoolean("patio"));
+				i.setPavimento(rs.getBoolean("pavimento"));
+				i.setPiscina(rs.getBoolean("piscina"));
+				i.setPisoDepartamento(rs.getString("pisoDepartamento"));
+				i.setPrecioVenta(rs.getFloat("precioVenta"));
+				//i.setPropiedadHorizontal(rs.getString("propiedadHorizontal"));
+				i.setProvincia(rs.getString("provincia"));
+				i.setReservado(rs.getBoolean("reservado"));
+				//i.setSuperficieEdificada(rs.getFloat(""));
+				i.setSuperficieTerreno(rs.getFloat("superficieTerreno"));
+				//i.setTelefono(rs.getBoolean(""));
+				i.setTipoInmueble(rs.getString("tipoInmueble"));
+				i.setVendido(rs.getBoolean("vedido")); 
+								
+				lista.add(i);
+			}
+						
+		} catch(Exception ex) { 
+			
+			 throw new Exception("Error al buscar todos los inmuebles en la Base de datos.");
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		return lista;	
 	}
 
 }
