@@ -17,7 +17,7 @@ public class PropietarioDaoImplement implements PropietarioDao{
 	private static final String serchNombre= "SELECT * FROM propietario WHERE nombre=?";
 	private static final String updateEstado = "UPDATE propietario SET eliminado = ? where idPropietario = ?";
 	private static final String update = "UPDATE propietario SET nombre = ?, apellido = ?, dni = ?, tipoDocumento = ?, calle = ?, numeroCalle = ?, localidad = ?, provincia = ?, telefono = ?, email = ? where idPropietario = ?";
-	
+	private static final String buscarPorId = "SELECT * FROM propietario WHERE idPropietario=?";
 	@Override
 	public void altaPropietario(Propietario p) throws Exception {
 		
@@ -187,4 +187,40 @@ public class PropietarioDaoImplement implements PropietarioDao{
 			}
 		
 	}
+	@Override
+	public Propietario buscarPorId(Integer id) throws Exception {
+		Propietario propietario= new Propietario();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = Conexion.getConexion();
+			pstmt= conn.prepareStatement(buscarPorId);
+			pstmt.setString(1, id.toString());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				propietario.setApellido(rs.getString("apellido"));
+				propietario.setNombre(rs.getString("nombre"));
+				propietario.setCalle(rs.getString("calle"));
+				propietario.setEmail(rs.getString("email"));
+				propietario.setLocalidad(rs.getString("localidad"));
+				propietario.setProvincia(rs.getString("provincia"));
+				propietario.setNumeroCalle(rs.getInt("numeroCalle"));
+				propietario.setNumeroDocumento(rs.getLong("dni"));
+				propietario.setTelefono(rs.getLong("telefono"));
+				propietario.setIdPropietario(rs.getInt("idPropietario"));
+				propietario.setTipoDocumento(rs.getString("tipoDocumento"));
+				
+			}
+		}
+		catch (Exception ex)
+		{
+			throw new Exception("Error al buscar en la Base de datos.");
+		
+	}
+		return propietario;
+	
+	}
+	
 }

@@ -14,4 +14,6 @@ public interface InmuebleDao {
 	
 	public List<Inmueble> buscarTodos(String s) throws Exception;
 
+	public List<Inmueble> obtenerTodos() throws Exception;
+
 }

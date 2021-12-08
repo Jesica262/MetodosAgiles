@@ -11,5 +11,6 @@ public interface PropietarioDao {
 	public Propietario buscarPorNombre(String nombre)throws Exception;
 	public void modificarEstado(Propietario p)  throws Exception;
 	public void modificarPropietario(Propietario p)  throws Exception;
+	Propietario buscarPorId(Integer id) throws Exception;
 
 }

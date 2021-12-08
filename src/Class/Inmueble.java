@@ -15,6 +15,13 @@ public class Inmueble {
 	private String pisoDepartamento;
 	private String barrio;
 	private String tipoInmueble;//ver en la historia
+	@Override
+	public String toString() {
+		return calle + " " + numeroCalle;
+	}
+
+
+
 	private Float precioVenta;
 	private String orientacion;
 	private Float frente;

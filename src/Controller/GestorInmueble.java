@@ -30,6 +30,11 @@ public class GestorInmueble {
     public Boolean modificarInmueble(Inmueble i) throws Exception {
     	return inmuebleDao.actualizarInmueble(i);
     }
+    public List<Inmueble> obtenerTodos() throws Exception{
+    	
+    	
+    	return inmuebleDao.obtenerTodos();
+    }
     
     public List<Inmueble> buscarTodos() throws Exception{
 		

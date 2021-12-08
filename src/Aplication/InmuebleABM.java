@@ -7,11 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Class.DTOAdministrador;
+import Class.Inmueble;
 import Class.Vendedor;
+import Controller.GestorInmueble;
 import Controller.GestorVendedor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -27,16 +30,16 @@ import java.awt.Font;
 public class InmuebleABM extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textNombre;
-	private JTextField textDni;
-	private JTextField textApellido;
-	private JTextField textEmail;
-	private JTextField textClave;
+	private JTextField textCodigo;
+	private JTextField textDireccion;
+	private JTextField textTipo;
+	private JTextField textLocalidad;
+	private JTextField textPrecio;
 	private DTOAdministrador dtoAdministrador;
 
 	public InmuebleABM() {
 		setBackground(SystemColor.inactiveCaption);
-		setTitle("ABM - Vendedor");
+		setTitle("ABM - Inmueble");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 550);
 		contentPane = new JPanel();
@@ -64,37 +67,37 @@ public class InmuebleABM extends JFrame {
 			}
 		});
 		
-		JLabel lblNewLabel_1 = new JLabel("Nombre:");
+		JLabel lblNewLabel_1 = new JLabel("C\u00F3digo:");
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Dni:");
+		JLabel lblNewLabel_1_1 = new JLabel("Direcci\u00F3n:");
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Apellido:");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Tipo:");
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Email:");
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Localidad:");
 		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Clave:");
+		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Precio:");
 		
-		textNombre = new JTextField();
-		textNombre.setEditable(false);
-		textNombre.setColumns(10);
+		textCodigo = new JTextField();
+		textCodigo.setEditable(false);
+		textCodigo.setColumns(10);
 		
-		textDni = new JTextField();
-		textDni.setEditable(false);
-		textDni.setColumns(10);
+		textDireccion = new JTextField();
+		textDireccion.setEditable(false);
+		textDireccion.setColumns(10);
 		
-		textApellido = new JTextField();
-		textApellido.setEditable(false);
-		textApellido.setColumns(10);
+		textTipo = new JTextField();
+		textTipo.setEditable(false);
+		textTipo.setColumns(10);
 		
-		textEmail = new JTextField();
-		textEmail.setEditable(false);
-		textEmail.setColumns(10);
+		textLocalidad = new JTextField();
+		textLocalidad.setEditable(false);
+		textLocalidad.setColumns(10);
 		
-		textClave = new JTextField();
-		textClave.setEditable(false);
-		textClave.setColumns(10);
+		textPrecio = new JTextField();
+		textPrecio.setEditable(false);
+		textPrecio.setColumns(10);
 		
-		JButton btnModificar = new JButton("Modificar Vendedor");
+		JButton btnModificar = new JButton("Modificar Inmueble");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -105,7 +108,7 @@ public class InmuebleABM extends JFrame {
 		});
 		btnModificar.setBackground(SystemColor.controlHighlight);
 		
-		JButton btnEliminar = new JButton("Eliminar Vendedor");
+		JButton btnEliminar = new JButton("Eliminar Inmueble");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -115,7 +118,7 @@ public class InmuebleABM extends JFrame {
 		});
 		btnEliminar.setBackground(SystemColor.controlHighlight);
 		
-		JButton btnCrear = new JButton("Crear Vendedor");
+		JButton btnCrear = new JButton("Crear Inmueble");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -143,13 +146,13 @@ public class InmuebleABM extends JFrame {
 								.addComponent(lblNewLabel_1_1_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblNewLabel_1_1_1_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(lblNewLabel_1_1_1_1_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(textClave, Alignment.LEADING)
-								.addComponent(textEmail, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+								.addComponent(textPrecio, Alignment.LEADING)
+								.addComponent(textLocalidad, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
 							.addGap(70))
-						.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textCodigo, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(textApellido, Alignment.LEADING)
-							.addComponent(textDni, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)))
+							.addComponent(textTipo, Alignment.LEADING)
+							.addComponent(textDireccion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(btnCancelar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,23 +171,23 @@ public class InmuebleABM extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textCodigo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_1_1)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textDireccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_1_1_1)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_1_1_1_1)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_1_1_1_1_1)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(textPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(btnCrear)
 							.addGap(18)
@@ -214,13 +217,38 @@ public class InmuebleABM extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
-		JLabel lblNewLabel = new JLabel("VENDEDORES:");
+		JLabel lblNewLabel = new JLabel("INMUEBLES:");
 		
-		JComboBox comboBoxVendedores = new JComboBox();
-		List<Vendedor> listaVendedores = GestorVendedor.get().obtenerTodos(); 
-		comboBoxVendedores.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
+		JComboBox comboBoxInmuebles = new JComboBox();
+		try {
+			List<Inmueble> listaInmuebles = GestorInmueble.get().obtenerTodos();
+			for(Inmueble inm: listaInmuebles) comboBoxInmuebles.addItem(inm);
+		
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+		comboBoxInmuebles.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Inmueble inmueble= (Inmueble) comboBoxInmuebles.getSelectedItem();
+				
+				if(!comboBoxInmuebles.getSelectedItem().toString().equals(""))
+				{	
+					textCodigo.setText(inmueble.getCodigo().toString());
+					textDireccion.setText(inmueble.toString());
+					textLocalidad.setText(inmueble.getLocalidad());
+					textPrecio.setText(inmueble.getPrecioVenta().toString());
+					textTipo.setText(inmueble.getTipoInmueble());
+					
+				}else {
+					
+					 mensajeDeSeleccion();
+				}
+			}
+		});
 		btnBuscar.setBackground(SystemColor.controlHighlight);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -229,7 +257,7 @@ public class InmuebleABM extends JFrame {
 					.addGap(40)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBoxVendedores, 0, 238, Short.MAX_VALUE)
+					.addComponent(comboBoxInmuebles, 0, 238, Short.MAX_VALUE)
 					.addGap(18)
 					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
 					.addGap(32))
@@ -240,12 +268,16 @@ public class InmuebleABM extends JFrame {
 					.addGap(35)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
-						.addComponent(comboBoxVendedores, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxInmuebles, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBuscar))
 					.addContainerGap(39, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
+	}
+	public void mensajeDeSeleccion()
+	{
+		JOptionPane.showMessageDialog(null, "Debe seleccionar un Inmueble para poder buscar");
 	}
 
 	public InmuebleABM(DTOAdministrador dtoAdmin) {

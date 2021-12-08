@@ -102,10 +102,12 @@ public class MenuAdministrador extends JFrame {
 		});
 		menuInmueble.add(menuItemConsultaInmueble);
 		
-		JMenuItem menuItemCatalogo = new JMenuItem("Cat\u00E1logo de Inmuebles");
+		JMenuItem menuItemCatalogo = new JMenuItem("ABMInmueble");
 		menuItemCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				InmuebleABM inmuebleABM = new InmuebleABM();
+				inmuebleABM.setVisible(true);
+				inmuebleABM.setLocationRelativeTo(null);
 				//Ver que agregar
 			}
 		});
