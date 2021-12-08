@@ -36,6 +36,8 @@ public class InmuebleABM extends JFrame {
 	private JTextField textLocalidad;
 	private JTextField textPrecio;
 	private DTOAdministrador dtoAdministrador;
+	
+	private GestorInmueble gestor= GestorInmueble.get();
 
 	public InmuebleABM() {
 		setBackground(SystemColor.inactiveCaption);
@@ -97,13 +99,25 @@ public class InmuebleABM extends JFrame {
 		textPrecio.setEditable(false);
 		textPrecio.setColumns(10);
 		
+		JComboBox comboBoxInmuebles = new JComboBox();
+		try {
+			List<Inmueble> listaInmuebles = GestorInmueble.get().obtenerTodos();
+			for(Inmueble inm: listaInmuebles) comboBoxInmuebles.addItem(inm);
+		
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+		comboBoxInmuebles.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
+		
 		JButton btnModificar = new JButton("Modificar Inmueble");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//				ModificarVendedor modificar = new ModificarVendedor();
-//				modificar.setVisible(true);
-//				modificar.setLocationRelativeTo(null);
+				ModificarInmueble modificar = new ModificarInmueble();
+				modificar.setVisible(true);
+				modificar.setLocationRelativeTo(null);
+				dispose();
 			}
 		});
 		btnModificar.setBackground(SystemColor.controlHighlight);
@@ -111,8 +125,19 @@ public class InmuebleABM extends JFrame {
 		JButton btnEliminar = new JButton("Eliminar Inmueble");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					gestor.darDeBajaInmueble((Inmueble) comboBoxInmuebles.getSelectedItem());
+					mensajeExitosoDeBaja();
+					InmuebleABM inmuebleABM = new InmuebleABM();
+					inmuebleABM.setVisible(true);
+					inmuebleABM.setLocationRelativeTo(null);
+					dispose();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					mensajeFalloDeBaja();
+				}
 				
-				//"Mensaje"
 				dispose();
 			}
 		});
@@ -122,10 +147,10 @@ public class InmuebleABM extends JFrame {
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				AltaVendedor alta = new AltaVendedor();
+				AltaInmueble alta = new AltaInmueble();
 				alta.setVisible(true);
 				alta.setLocationRelativeTo(null);
-				
+				dispose();
 			}
 		});
 		btnCrear.setBackground(SystemColor.controlHighlight);
@@ -219,16 +244,7 @@ public class InmuebleABM extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("INMUEBLES:");
 		
-		JComboBox comboBoxInmuebles = new JComboBox();
-		try {
-			List<Inmueble> listaInmuebles = GestorInmueble.get().obtenerTodos();
-			for(Inmueble inm: listaInmuebles) comboBoxInmuebles.addItem(inm);
 		
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} 
-		comboBoxInmuebles.setBackground(UIManager.getColor("InternalFrame.borderHighlight"));
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -278,6 +294,14 @@ public class InmuebleABM extends JFrame {
 	public void mensajeDeSeleccion()
 	{
 		JOptionPane.showMessageDialog(null, "Debe seleccionar un Inmueble para poder buscar");
+	}
+	public void mensajeExitosoDeBaja()
+	{
+		JOptionPane.showMessageDialog(null, "Inmueble eliminado con exito");
+	}
+	public void mensajeFalloDeBaja()
+	{
+		JOptionPane.showMessageDialog(null, "Error al intentar eliminar Inmueble, intente en otro momento");
 	}
 
 	public InmuebleABM(DTOAdministrador dtoAdmin) {

@@ -6,14 +6,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Class.Vendedor;
+import Controller.GestorInmueble;
+import Controller.GestorVendedor;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.JCheckBox;
@@ -27,7 +34,7 @@ public class AltaInmueble extends JFrame {
 	private JPanel contentPane;
 	private JTextField textProvincia;
 	private JTextField textFieldNroCalle;
-	private JTextField textClave;
+	private JTextField textBarrio;
 	private JTextField textFieldOtraLocalidad;
 	private JTextField textFieldOtraCalle;
 	private JTextField textFieldPiso;
@@ -39,6 +46,8 @@ public class AltaInmueble extends JFrame {
 	private JTextField textFieldBaños;
 	private JTextField textFieldDormitorios;
 	private JTextField textFieldAntiguedad;
+	private GestorInmueble gestor= GestorInmueble.get();
+	private JTextField textFechaCarga;
 
 	/**
 	 * Launch the application.
@@ -60,7 +69,7 @@ public class AltaInmueble extends JFrame {
 	 * Create the frame.
 	 */
 	public AltaInmueble() {
-		setTitle("Interface Inmueble");
+		setTitle("Alta Inmueble");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 627, 825);
 		contentPane = new JPanel();
@@ -85,8 +94,8 @@ public class AltaInmueble extends JFrame {
 		textFieldNroCalle = new JTextField();
 		textFieldNroCalle.setColumns(10);
 		
-		textClave = new JTextField();
-		textClave.setColumns(10);
+		textBarrio = new JTextField();
+		textBarrio.setColumns(10);
 		
 		JLabel lblOtraLocalidad = new JLabel("Otra localidad:");
 		
@@ -152,19 +161,19 @@ public class AltaInmueble extends JFrame {
 		
 		JComboBox comboBoxPropietarios = new JComboBox();
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Propiedad Horizontal");
+		JCheckBox chckbxPropiedadHorizontal = new JCheckBox("Propiedad Horizontal");
 		
 		JCheckBox chckbxPatio = new JCheckBox("Patio");
 		
 		JCheckBox chckbxCochera = new JCheckBox("Cochera");
 		
-		JCheckBox chckbxNewCheckBox_2_1 = new JCheckBox("Clocacas");
+		JCheckBox chckbxCloacas = new JCheckBox("Clocacas");
 		
 		JCheckBox chckbxGarage = new JCheckBox("Garage");
 		
 		JCheckBox chckbxPiscina = new JCheckBox("Piscina");
 		
-		JCheckBox chckbxNewCheckBox_2_2_1_1 = new JCheckBox("Agua Corriente");
+		JCheckBox chckbxAguaCorriente = new JCheckBox("Agua Corriente");
 		
 		JCheckBox chckbxLavadero = new JCheckBox("Lavadero");
 		
@@ -186,11 +195,12 @@ public class AltaInmueble extends JFrame {
 		
 		JLabel lblObservaciones = new JLabel("Observaciones:");
 		
-		JTextArea textArea = new JTextArea();
+		JTextArea textObservaciones = new JTextArea();
 		
-		JButton btnPrevisualizarImagen = new JButton("Previsualizar Imagen");
-		
-		JButton btnCrearInmueble = new JButton("Crear Inmueble");
+		textFechaCarga = new JTextField();
+		textFechaCarga.setEditable(false);
+		textFechaCarga.setText(LocalDate.now().toString());
+		textFechaCarga.setColumns(10);
 		
 		textFieldDormitorios = new JTextField();
 		textFieldDormitorios.setColumns(10);
@@ -200,7 +210,50 @@ public class AltaInmueble extends JFrame {
 		textFieldAntiguedad = new JTextField();
 		textFieldAntiguedad.setColumns(10);
 		
+		JButton btnPrevisualizarImagen = new JButton("Previsualizar Imagen");
+		
+		JButton btnCrearInmueble = new JButton("Crear Inmueble");
+		btnCrearInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+//				if(gestor.validacionVacios((Propietario) comboBoxPropietarios.getSelectedItem(), textFechaCarga.getText(), textProvincia.getText(), comboBoxLocalidades.getSelectedItem().toString(), comboBoxCalles.getSelectedItem().toString(), textFieldNroCalle.getText(), comboBoxTipoInmueble.getSelectedItem().toString(), textFieldPrecioVenta.getText())) {
+//					Inmueble i=new Inmueble (textNombre.getText(), textApellido.getText(), Long.parseLong(textDni.getText()), textUsuario.getText(), textClave.getText(), textEmail.getText(), false);
+//					
+//					try {
+//						gv.crearVendedor(v);
+//						mensajeExitosoDeAlta();
+//						//volvemos a la pantalla anterior
+//						VendedorABM vendedorABM = new VendedorABM();
+//						vendedorABM.setVisible(true);
+//						vendedorABM.setLocationRelativeTo(null);
+//						dispose();
+//					} catch (Exception e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//						informarErrorDeAlta();
+//					}
+//					
+//					
+//				}else informarErrorDeAlta();
+//				//Mensaje 
+//				
+//			}
+			}
+		});
+		
+		
+		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InmuebleABM inmuebleABM = new InmuebleABM();
+				inmuebleABM.setVisible(true);
+				inmuebleABM.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -238,7 +291,7 @@ public class AltaInmueble extends JFrame {
 													.addComponent(comboBoxLocalidades, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 													.addComponent(comboBoxCalles, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 												.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-													.addComponent(textClave, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+													.addComponent(textBarrio, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
 													.addComponent(comboBoxTipoInmueble, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 											.addGap(18)
 											.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -275,10 +328,11 @@ public class AltaInmueble extends JFrame {
 																	.addComponent(lblFondo, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 																	.addPreferredGap(ComponentPlacement.RELATED)
 																	.addComponent(textFieldFondo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))))))
-										.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textFechaCarga, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-										.addComponent(chckbxNewCheckBox)
+										.addComponent(chckbxPropiedadHorizontal)
 										.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 											.addGroup(gl_panel_1.createSequentialGroup()
 												.addComponent(lblOrientacion, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
@@ -286,7 +340,7 @@ public class AltaInmueble extends JFrame {
 												.addComponent(comboBoxOrientacion, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 											.addComponent(chckbxCochera, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 											.addComponent(chckbxGarage, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-											.addComponent(chckbxNewCheckBox_2_2_1_1, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+											.addComponent(chckbxAguaCorriente, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 											.addGroup(gl_panel_1.createSequentialGroup()
 												.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
 													.addComponent(lblBaños, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -301,7 +355,7 @@ public class AltaInmueble extends JFrame {
 												.addGroup(gl_panel_1.createSequentialGroup()
 													.addGap(36)
 													.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-														.addComponent(chckbxNewCheckBox_2_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+														.addComponent(chckbxCloacas, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxPiscina, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxLavadero, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxPatio, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))
@@ -312,7 +366,7 @@ public class AltaInmueble extends JFrame {
 														.addComponent(lblDormitorios))))
 											.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 												.addGroup(gl_panel_1.createSequentialGroup()
-													.addPreferredGap(ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+													.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 													.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 														.addComponent(chckbxAguaCaliente, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxGasNatural, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
@@ -323,7 +377,7 @@ public class AltaInmueble extends JFrame {
 													.addComponent(textFieldDormitorios, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))))
 										.addGroup(gl_panel_1.createSequentialGroup()
 											.addGap(18)
-											.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(textObservaciones, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)))
 									.addGap(4))))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(36)
@@ -332,11 +386,11 @@ public class AltaInmueble extends JFrame {
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addGap(2)
-									.addComponent(btnPrevisualizarImagen, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+									.addComponent(btnPrevisualizarImagen, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
 									.addGap(35)
 									.addComponent(btnCrearInmueble, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+									.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
 								.addComponent(lblObservaciones, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGap(116)
@@ -355,7 +409,9 @@ public class AltaInmueble extends JFrame {
 						.addComponent(lblPropietarios)
 						.addComponent(comboBoxPropietarios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(lblFechaDeCarga)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblFechaDeCarga)
+						.addComponent(textFechaCarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -384,7 +440,7 @@ public class AltaInmueble extends JFrame {
 								.addComponent(lblDepartamento))
 							.addGap(18)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textBarrio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblBarrio)))
 						.addComponent(textFieldDepartamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(24)
@@ -422,12 +478,12 @@ public class AltaInmueble extends JFrame {
 					.addGap(28)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(chckbxPatio)
-						.addComponent(chckbxNewCheckBox)
+						.addComponent(chckbxPropiedadHorizontal)
 						.addComponent(chckbxPavimento))
 					.addGap(26)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(chckbxCochera)
-						.addComponent(chckbxNewCheckBox_2_1)
+						.addComponent(chckbxCloacas)
 						.addComponent(chckbxTelefono))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
@@ -436,7 +492,7 @@ public class AltaInmueble extends JFrame {
 						.addComponent(chckbxGasNatural))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxNewCheckBox_2_2_1_1)
+						.addComponent(chckbxAguaCorriente)
 						.addComponent(chckbxLavadero)
 						.addComponent(chckbxAguaCaliente))
 					.addGap(18)
@@ -444,7 +500,7 @@ public class AltaInmueble extends JFrame {
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addComponent(lblObservaciones, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addGap(41))
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textObservaciones, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnVerImagenInmueble)
@@ -468,5 +524,14 @@ public class AltaInmueble extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	public void informarErrorDeAlta() {
+		
+		JOptionPane.showMessageDialog(null, "No se pudo dar de alta el inmueble. Verifique que todos los campos esten correctos.");
+		
+	}
+	public void mensajeExitosoDeAlta()
+	{
+		JOptionPane.showMessageDialog(null, "Inmueble dado de alta con exito.");
 	}
 }
