@@ -36,7 +36,7 @@ public class ConsultarInmueble extends JFrame {
 	
 	public ConsultarInmueble() {
 		setBackground(SystemColor.inactiveCaption);
-		setTitle("ABM - Vendedor");
+		setTitle("Consultar Inmueble");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 550);
 		contentPane = new JPanel();
