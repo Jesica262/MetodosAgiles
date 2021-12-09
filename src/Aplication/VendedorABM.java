@@ -52,7 +52,7 @@ public class VendedorABM extends JFrame {
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_1.setBackground(SystemColor.activeCaption);
 		
-		JLabel lblVendedorX = new JLabel("VENDEDOR X");
+		JLabel lblVendedorX = new JLabel("VENDEDOR");
 		lblVendedorX.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JButton btnCancelar = new JButton("Cancelar");

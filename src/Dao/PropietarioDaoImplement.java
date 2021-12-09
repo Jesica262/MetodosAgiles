@@ -11,12 +11,14 @@ import Class.Propietario;
 public class PropietarioDaoImplement implements PropietarioDao{
 	
 	private Connection con;
-	private static final String insert = "INSERT INTO propietario (nombre,apellido,dni,tipoDocumento,calle,numeroCalle,localidad,provincia,telefono,email) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private static final String insert = "INSERT INTO propietario (nombre,apellido,dni,tipoDocumento,calle,numeroCalle,"
+			+ "localidad,provincia,telefono,email) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private static final String selectAll = "SELECT * FROM propietario";
 	private static final String search = "SELECT * FROM propietario WHERE ";
 	private static final String serchNombre= "SELECT * FROM propietario WHERE nombre=?";
 	private static final String updateEstado = "UPDATE propietario SET eliminado = ? where idPropietario = ?";
-	private static final String update = "UPDATE propietario SET nombre = ?, apellido = ?, dni = ?, tipoDocumento = ?, calle = ?, numeroCalle = ?, localidad = ?, provincia = ?, telefono = ?, email = ? where idPropietario = ?";
+	private static final String update = "UPDATE propietario SET nombre = ?, apellido = ?, dni = ?, tipoDocumento = ?, calle = ?, "
+			+ "numeroCalle = ?, localidad = ?, provincia = ?, telefono = ?, email = ? where idPropietario = ?";
 	
 	@Override
 	public void altaPropietario(Propietario p) throws Exception {

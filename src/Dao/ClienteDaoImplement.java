@@ -15,8 +15,11 @@ public class ClienteDaoImplement implements ClienteDao {
 	private static final String search = "SELECT * FROM cliente WHERE ";
 	private static final String serchNombre= "SELECT * FROM cliente WHERE nombre=?";
 	private static final String updateEstado = "UPDATE cliente SET eliminado = ? where idCliente = ?";
-	private static final String insert = "INSERT INTO cliente (nombre,apellido,telefono,email,usuario,clave,eliminado,barrio,características,monto) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private static final String update = "UPDATE cliente SET nombre = ?, apellido = ?, telefono = ?, email = ?, usuario = ?, clave = ?, eliminado = ?, tipoInmueble = ?, localidad = ?, barrio = ?, características = ?, monto = ? where idCliente = ?";
+	private static final String insert = "INSERT INTO cliente (nombre,apellido,telefono,email,usuario,clave,eliminado,"
+			+ "barrio,características,monto) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private static final String update = "UPDATE cliente SET nombre = ?, apellido = ?, telefono = ?, email = ?, "
+			+ "usuario = ?, clave = ?, eliminado = ?, tipoInmueble = ?, localidad = ?, barrio = ?, características = ?, "
+			+ "monto = ? where idCliente = ?";
 	
 	@Override
 	public List<Cliente> buscarTodos(String s) throws Exception {

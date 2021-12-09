@@ -36,25 +36,6 @@ public class AltaVendedor extends JFrame {
 	private GestorVendedor gv= GestorVendedor.get();
 	private JTextField textUsuario;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AltaVendedor frame = new AltaVendedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public AltaVendedor() {
 		setBackground(SystemColor.inactiveCaption);
 		setTitle("ABM - Vendedor");
@@ -87,8 +68,12 @@ public class AltaVendedor extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(gv.validacionVacios(textNombre.getText(),textDni.getText(), textApellido.getText(), textEmail.getText(),textUsuario.getText(), textClave.getText())) {
-					Vendedor v=new Vendedor(textNombre.getText(), textApellido.getText(), Long.parseLong(textDni.getText()), textUsuario.getText(), textClave.getText(), textEmail.getText(), false);
+				if(gv.validacionVacios(textNombre.getText(),textDni.getText(), textApellido.getText(), textEmail.getText(),
+						textUsuario.getText(), textClave.getText())) {
+					
+					Vendedor v=new Vendedor(textNombre.getText(), textApellido.getText(), 
+							Long.parseLong(textDni.getText()), textUsuario.getText(), 
+							textClave.getText(), textEmail.getText(), false);
 					
 					try {
 						gv.crearVendedor(v);

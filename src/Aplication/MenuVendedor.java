@@ -91,10 +91,34 @@ public class MenuVendedor extends JFrame {
 		menuItemCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Ver que agregar
+				GenerarCatalogo catalogo = new GenerarCatalogo();
+				catalogo.setVisible(true);
+				catalogo.setLocationRelativeTo(null);
 			}
 		});
 		menuInmueble.add(menuItemCatalogo);
+		
+		JMenuItem menuItemCGenerarReserva = new JMenuItem("Generar Reserva de Inmueble");
+		menuItemCGenerarReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerarReserva reserva = new GenerarReserva();
+				reserva.setVisible(true);
+				reserva.setLocationRelativeTo(null);
+			}
+		});
+		menuInmueble.add(menuItemCGenerarReserva);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Venta de Inmueble");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentaDeInmueble venta = new VentaDeInmueble();
+				venta.setVisible(true);
+				venta.setLocationRelativeTo(null);
+			}
+		});
+		menuInmueble.add(mntmNewMenuItem);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

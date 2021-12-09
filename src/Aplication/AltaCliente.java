@@ -284,9 +284,6 @@ public class AltaCliente extends JFrame {
 				else {
 					informarErrorDeAlta();
 				}
-			
-				
-				
 			}
 		});
 		btnAgregar.setBackground(SystemColor.controlHighlight);

@@ -369,10 +369,6 @@ public class ClienteABM extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
-	public ClienteABM(DTOAdministrador dtoAdmin) {
-		// TODO Auto-generated constructor stub
-		dtoAdministrador=dtoAdmin;
-	}
 	public void mensajeDeSeleccion()
 	{
 		JOptionPane.showMessageDialog(null, "Debe seleccionar un Cliente para poder buscar");

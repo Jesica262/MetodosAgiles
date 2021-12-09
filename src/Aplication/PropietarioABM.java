@@ -115,12 +115,10 @@ public class PropietarioABM extends JFrame {
 		
 		List<Propietario> propietarioX = new ArrayList<Propietario>();
 		
-		
 		propietarioX = gp.buscarTodos();
 		comboBoxPropietario.addItem("");
 		for(Propietario e: propietarioX)
-		{
-				
+		{			
 			comboBoxPropietario.addItem(e.getNombre());
 		}
 		

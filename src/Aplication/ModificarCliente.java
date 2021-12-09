@@ -291,10 +291,7 @@ public class ModificarCliente extends JFrame {
 				}
 				else {
 					informarErrorDeAlta();
-				}
-			
-				
-				
+				}	
 			}
 		});
 		btnModificar.setBackground(SystemColor.controlHighlight);

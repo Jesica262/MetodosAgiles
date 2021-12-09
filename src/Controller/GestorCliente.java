@@ -17,23 +17,18 @@ public class GestorCliente {
     	clienteDao = new ClienteDaoImplement();
     }
     
-
     static public GestorCliente get() {
         return gestor;
     }
-    
     public List<Cliente> buscarTodos() throws Exception{
 		
 		try {
 			return clienteDao.buscarTodos("");
-		   }
-			
+		   }			
 			catch (Exception ex) {
 				 throw ex;
-				
 			}
     }
-    
     public void modificarEstado(Cliente c) throws Exception  {
     	
     	try {
@@ -41,51 +36,43 @@ public class GestorCliente {
 		   }
 			
 			catch (Exception ex) {
-				 throw ex;
-				
+				 throw ex;				
 			}
     }
-    
-    public boolean validacionVacios(String nombre, String apellido,String telefono, String usuario, String clave, String barrio, String caracteristica, String monto, String inmueble, String localidad) {
+    public boolean validacionVacios(String nombre, String apellido,String telefono, String usuario, String clave, 
+    		String barrio, String caracteristica, String monto, String inmueble, String localidad) {
 		
-		if(nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || usuario.isEmpty() || clave.isEmpty() || barrio.isEmpty() || caracteristica.isEmpty() || monto.isEmpty() || inmueble.isEmpty() || localidad.isEmpty()) {
+		if(nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || usuario.isEmpty() || clave.isEmpty() 
+		|| barrio.isEmpty() || caracteristica.isEmpty() || monto.isEmpty() || inmueble.isEmpty() || localidad.isEmpty()) 
+		{
 			System.out.println("El campo se encuentra vacío"); 
 			return false;
-		}
-		
+		}		
 		return true;
-    }
-    
+    }   
     public void guardar(Cliente c) throws Exception {
 		   try {
 			   clienteDao.altaCliente(c);
-		   }
-			
+		   }			
 			catch (Exception ex) {
-				 throw ex;
-				
+				 throw ex;				
 			}
 	}
-    
     public void modificarCliente(Cliente c) throws Exception {
 		   try {
 			   clienteDao.modificarCliente(c);
-		   }
-			
+		   }			
 			catch (Exception ex) {
-				 throw ex;
-				
+				 throw ex;				
 			}
 	}
-    
     public Cliente BuscarPorNombre(String nombre) throws Exception {
  		try {
  			return clienteDao.buscarPorNombre(nombre);
  		   }
  			
  			catch (Exception ex) {
- 				 throw ex;
- 				
+ 				 throw ex;				
  			}	
  	}
     

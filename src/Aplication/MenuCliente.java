@@ -60,6 +60,16 @@ public class MenuCliente extends JFrame {
 			}
 		});
 		menuInmueble.add(menuItemCatalogo);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Generar Reserva de Inmueble");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerarReserva reserva = new GenerarReserva();
+				reserva.setVisible(true);
+				reserva.setLocationRelativeTo(null);
+			}
+		});
+		menuInmueble.add(mntmNewMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

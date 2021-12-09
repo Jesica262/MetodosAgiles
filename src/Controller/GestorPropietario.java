@@ -8,7 +8,6 @@ import Dao.PropietarioDaoImplement;
 
 public class GestorPropietario {
 	
-	//static private GestorPropietario gestor = new GestorPropietario();
 	private PropietarioDao propietarioDao;
 	 
     public GestorPropietario() { 
@@ -76,9 +75,11 @@ public class GestorPropietario {
 				
 			}
     }
-    public boolean validacionVacios(String nombre, String apellido, String dni, String telefono, String email, String calle, String numero, String tipo, String provincia, String localidad) {
+    public boolean validacionVacios(String nombre, String apellido, String dni, String telefono, String email, String calle, 
+    		String numero, String tipo, String provincia, String localidad) {
 		
-		if(nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || telefono.isEmpty() || email.isEmpty() || calle.isEmpty() || numero.isEmpty() || tipo.isEmpty() || provincia.isEmpty() || localidad.isEmpty()) {
+		if(nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || telefono.isEmpty() || email.isEmpty() || calle.isEmpty() 
+				|| numero.isEmpty() || tipo.isEmpty() || provincia.isEmpty() || localidad.isEmpty()) {
 			System.out.println("El campo se encuentra vacío"); 
 			return false;
 		}

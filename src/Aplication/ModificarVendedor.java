@@ -70,8 +70,11 @@ public class ModificarVendedor extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(gv.validacionVacios(textNombre.getText(), textDni.getText(), textApellido.getText(), textEmail.getText(),textUsuario.getText(), textClave.getText())) {
-					Vendedor vendedorModificado=new Vendedor(vendedor.getIdVendedor(), textNombre.getText(), textApellido.getText(), Long.parseLong(textDni.getText()), textUsuario.getText(), textClave.getText(), textEmail.getText(), vendedor.getEliminado());
+				if(gv.validacionVacios(textNombre.getText(), textDni.getText(), textApellido.getText(), textEmail.getText(),
+						textUsuario.getText(), textClave.getText())) {
+					Vendedor vendedorModificado=new Vendedor(vendedor.getIdVendedor(), textNombre.getText(), 
+							textApellido.getText(),Long.parseLong(textDni.getText()), textUsuario.getText(), 
+							textClave.getText(), textEmail.getText(), vendedor.getEliminado());
 					if(!vendedor.equals(vendedorModificado)) {
 						try {
 							gv.modificarVendedor(vendedorModificado);
