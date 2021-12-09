@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.List;
 
+import Class.Cliente;
 import Class.Inmueble;
 import Class.Propietario;
 import Dao.InmuebleDao;
@@ -42,5 +43,14 @@ public class GestorInmueble {
 				
 			}
     }
+    public Inmueble BuscarPorCodigo(String codigo) throws Exception {
+ 		try {
+ 			return inmuebleDao.buscarPorCodigo(codigo);
+ 		   }
+ 			
+ 			catch (Exception ex) {
+ 				 throw ex;				
+ 			}	
+ 	}
 
 }

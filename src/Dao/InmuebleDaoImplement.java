@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Class.Cliente;
 import Class.Inmueble;
 import Class.Propietario;
 
@@ -19,6 +20,7 @@ public class InmuebleDaoImplement implements InmuebleDao{
 	private static final String update="UPDATE inmueble SET fechaDeCarga=?, estado=?, provincia=?, localidad=?, calle=?, numero=?, pisoDepartamento=?, barrio=?, tipoInmueble=?, precioVenta=?, orientacion=?, frente=?, fondo=?, superficieTerreno=?, gasNatural=?, antiguedad=?, aguaCorriente=?, aguaCaliente=?, cloacas=?, patio=?, pavimento=?, piscina=?, baños=?, dormitorios=?, lavadero=?, garage=?, propiedadHorizontal=?, observaciones=?, eliminado=?, reservado=?, vendido=?, idPropietario=? WHERE codigo= ?";
 	private static final String search = "SELECT * FROM inmueble WHERE ";
 	private static final String selectAll = "SELECT * FROM inmueble";
+	private static final String searchCodigo = "SELECT * FROM inmueble WHERE codigo=?";
 	
 	@Override
 	public Boolean guardarInmueble(Inmueble i) throws Exception {
@@ -234,6 +236,38 @@ public class InmuebleDaoImplement implements InmuebleDao{
 			}
 		}	
 		return lista;	
+	}
+
+
+	@Override
+	public Inmueble buscarPorCodigo(String codigo) throws Exception {
+		Inmueble inmueble = new Inmueble();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = Conexion.getConexion();
+			pstmt= conn.prepareStatement(searchCodigo);
+			pstmt.setString(1, codigo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				inmueble.setCodigo(rs.getInt("codigo"));
+				inmueble.setCalle(rs.getString("calle"));
+				inmueble.setLocalidad(rs.getString("localidad"));
+				inmueble.setProvincia(rs.getString("provincia"));
+				inmueble.setNumeroCalle(rs.getInt("numero"));
+				inmueble.setTipoInmueble(rs.getString("tipoInmueble"));
+				inmueble.setPrecioVenta(rs.getFloat("precioVenta"));
+			
+			}
+		}
+		catch (Exception ex)
+		{
+			throw new Exception("Error al buscar en la Base de datos.");
+		
+	}
+		return inmueble;	
 	}
 
 }

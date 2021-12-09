@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
@@ -37,6 +39,7 @@ public class GenerarReserva extends JFrame {
 	private JTextField textCalle;
 	private JTextField textTipo;
 	private JTextField textPrecio;
+	private GestorCliente gC = new GestorCliente();
 	
 	public GenerarReserva() {
 		setBackground(SystemColor.inactiveCaption);
@@ -80,6 +83,22 @@ public class GenerarReserva extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("Seleccione Cliente:");
 		
 		JComboBox comboCliente = new JComboBox();
+		
+		List<Cliente> clienteX = new ArrayList<Cliente>();
+		
+		try {
+			clienteX = gC.buscarTodos();
+				
+			comboCliente.addItem("");
+			for(Cliente e: clienteX)
+			{
+					
+				comboCliente.addItem(e.getNombre());
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
