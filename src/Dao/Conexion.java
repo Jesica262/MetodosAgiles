@@ -11,7 +11,7 @@ public class Conexion {
 		{
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con =DriverManager.getConnection("jdbc:mysql://localhost:3306/db_inmobiliaria", "root", "1234");
+			con =DriverManager.getConnection("jdbc:mysql://localhost:3306/db_inmobiliaria", "root", "admin");
 			
 			
 		}

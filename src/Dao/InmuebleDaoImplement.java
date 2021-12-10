@@ -15,10 +15,10 @@ import Class.Propietario;
 public class InmuebleDaoImplement implements InmuebleDao{
 	private Connection con;
 	private PropietarioDao daoPropietario = new PropietarioDaoImplement();
-	private static final String insert = "INSERT INTO inmueble (fechaDeCarga,estado,provincia,localidad,calle,numero,pisoDepartamento,barrio,tipoInmueble,precioVenta,orientacion,frente,fondo,superficieTerreno,gasNatural,antiguedad,aguaCorriente,aguaCaliente,cloacas,patio,pavimento,piscina,baños,dormitorios,lavadero,garage,propiedadHorizontal,observaciones,eliminado,reservado,vendido,foto,idPropietario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String insert = "INSERT INTO inmueble (fechaDeCarga,estado,provincia,localidad,calle,numero,pisoDepartamento,barrio,tipoInmueble,precioVenta,orientacion,frente,fondo,superficieTerreno,gasNatural,antiguedad,aguaCorriente,aguaCaliente,cloacas,patio,pavimento,piscina,baños,dormitorios,lavadero,garage,propiedadHorizontal,observaciones,eliminado,reservado,vendido,foto,idPropietario,telefono) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String delete = "UPDATE inmueble SET eliminado=true WHERE codigo = ?";
 	private static final String select_todos ="SELECT * FROM inmueble WHERE eliminado=0";
-	private static final String update="UPDATE inmueble SET fechaDeCarga=?, estado=?, provincia=?, localidad=?, calle=?, numero=?, pisoDepartamento=?, barrio=?, tipoInmueble=?, precioVenta=?, orientacion=?, frente=?, fondo=?, superficieTerreno=?, gasNatural=?, antiguedad=?, aguaCorriente=?, aguaCaliente=?, cloacas=?, patio=?, pavimento=?, piscina=?, baños=?, dormitorios=?, lavadero=?, garage=?, propiedadHorizontal=?, observaciones=?, eliminado=?, reservado=?, vendido=?, idPropietario=? WHERE codigo= ?";
+	private static final String update="UPDATE inmueble SET fechaDeCarga=?, estado=?, provincia=?, localidad=?, calle=?, numero=?, pisoDepartamento=?, barrio=?, tipoInmueble=?, precioVenta=?, orientacion=?, frente=?, fondo=?, superficieTerreno=?, gasNatural=?, antiguedad=?, aguaCorriente=?, aguaCaliente=?, cloacas=?, patio=?, pavimento=?, piscina=?, baños=?, dormitorios=?, lavadero=?, garage=?, propiedadHorizontal=?, observaciones=?, eliminado=?, reservado=?, vendido=?, idPropietario=?, telefono=? WHERE codigo= ?";
 	private static final String search = "SELECT * FROM inmueble WHERE ";
 	private static final String selectAll = "SELECT * FROM inmueble";
 	
@@ -56,13 +56,14 @@ public class InmuebleDaoImplement implements InmuebleDao{
 		        pr.setInt(24, i.getDormitorios());
 		        pr.setBoolean(25, i.getLavadero());
 		        pr.setBoolean(26, i.getGarageCochera());
-		        pr.setString(27, i.getPropiedadHorizontal().toString()); //acomodar esto en la base de datos
+		        pr.setBoolean(27, i.getPropiedadHorizontal()); 
 		        pr.setString(28, i.getObservaciones());
 		        pr.setBoolean(29, i.getEliminado());
 		        pr.setBoolean(30, i.getReservado());
 		        pr.setBoolean(31, i.getVendido());
 		        //pr.setBlob(parameterIndex, inputStream, length);   //agregar otro ? en la sentencia insert al arreglar esto
 		        pr.setInt(32, i.getPropietario().getIdPropietario());
+		        pr.setBoolean(33, i.getTelefono());
 		        
 				pr.executeUpdate();		
 			
@@ -140,14 +141,15 @@ public class InmuebleDaoImplement implements InmuebleDao{
 		        pr.setInt(24, i.getDormitorios());
 		        pr.setBoolean(25, i.getLavadero());
 		        pr.setBoolean(26, i.getGarageCochera());
-		        pr.setString(27, i.getPropiedadHorizontal().toString()); //acomodar esto en la base de datos
+		        pr.setBoolean(27, i.getPropiedadHorizontal());
 		        pr.setString(28, i.getObservaciones());
 		        pr.setBoolean(29, i.getEliminado());
 		        pr.setBoolean(30, i.getReservado());
 		        pr.setBoolean(31, i.getVendido());
 		        //pr.setBlob(parameterIndex, inputStream, length);   //agregar fot=? en la sentencia update al arreglar esto
 		        pr.setInt(32, i.getPropietario().getIdPropietario());
-		        pr.setInt(33, i.getCodigo());
+		        pr.setBoolean(33, i.getTelefono());
+		        pr.setInt(34, i.getCodigo());
 		        
 				pr.executeUpdate();		
 			
@@ -211,12 +213,12 @@ public class InmuebleDaoImplement implements InmuebleDao{
 				i.setPiscina(rs.getBoolean("piscina"));
 				i.setPisoDepartamento(rs.getString("pisoDepartamento"));
 				i.setPrecioVenta(rs.getFloat("precioVenta"));
-				//i.setPropiedadHorizontal(rs.getString("propiedadHorizontal"));
+				i.setPropiedadHorizontal(rs.getBoolean("propiedadHorizontal"));
 				i.setProvincia(rs.getString("provincia"));
 				i.setReservado(rs.getBoolean("reservado"));
-				//i.setSuperficieEdificada(rs.getFloat(""));
+				i.setSuperficieEdificada(rs.getFloat("superficieEdificada"));
 				i.setSuperficieTerreno(rs.getFloat("superficieTerreno"));
-				//i.setTelefono(rs.getBoolean(""));
+				i.setTelefono(rs.getBoolean("telefono"));
 				i.setTipoInmueble(rs.getString("tipoInmueble"));
 				i.setVendido(rs.getBoolean("vedido")); 
 				
@@ -281,12 +283,12 @@ public class InmuebleDaoImplement implements InmuebleDao{
 				i.setPiscina(rs.getBoolean("piscina"));
 				i.setPisoDepartamento(rs.getString("pisoDepartamento"));
 				i.setPrecioVenta(rs.getFloat("precioVenta"));
-				i.setPropiedadHorizontal(rs.getString("propiedadHorizontal"));
+				i.setPropiedadHorizontal(rs.getBoolean("propiedadHorizontal"));
 				i.setProvincia(rs.getString("provincia"));
 				i.setReservado(rs.getBoolean("reservado"));
-				//i.setSuperficieEdificada(rs.getFloat(""));
+				i.setSuperficieEdificada(rs.getFloat("superficieEdificada"));
 				i.setSuperficieTerreno(rs.getFloat("superficieTerreno"));
-				//i.setTelefono(rs.getBoolean(""));
+				i.setTelefono(rs.getBoolean("telefono"));
 				i.setTipoInmueble(rs.getString("tipoInmueble"));
 				i.setVendido(rs.getBoolean("vedido")); 
 				i.setPropietario(daoPropietario.buscarPorId(rs.getInt("idPropietario")));

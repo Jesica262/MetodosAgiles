@@ -27,7 +27,7 @@ public class Inmueble {
 	private Float frente;
 	private Float fondo;
 	private Float superficieTerreno;
-	private String propiedadHorizontal;
+	private Boolean propiedadHorizontal;
 	private Float superficieEdificada;
 	private Integer antiguedad;
 	private Integer dormitorios;
@@ -48,9 +48,9 @@ public class Inmueble {
 	private Boolean vendido;
 	private Propietario propietario;
 	
-	public Inmueble(Integer codigo, LocalDate fechaCarga, String estado, String provincia, String calle,
+	public Inmueble(Integer codigo, LocalDate fechaCarga, String estado, String provincia,String localidad, String calle,
 			Integer numeroCalle, String pisoDepartamento, String barrio, String tipoInmueble, Float precioVenta,
-			String orientacion, Float frente, Float fondo, Float superficieTerreno, String propiedadHorizontal,
+			String orientacion, Float frente, Float fondo, Float superficieTerreno, Boolean propiedadHorizontal,
 			Float superficieEdificada, Integer antiguedad, Integer dormitorios, Integer baños, Boolean garageCochera,
 			Boolean patio, Boolean piscina, Boolean aguaCorriente, Boolean cloacas, Boolean gasNatural,
 			Boolean aguaCaliente, Boolean telefono, Boolean lavadero, Boolean pavimento, String observaciones,
@@ -60,6 +60,7 @@ public class Inmueble {
 		this.fechaCarga = fechaCarga;
 		this.estado = estado;
 		this.provincia = provincia;
+		this.localidad= localidad;
 		this.calle = calle;
 		this.numeroCalle = numeroCalle;
 		this.pisoDepartamento = pisoDepartamento;
@@ -94,9 +95,9 @@ public class Inmueble {
 	
 	
 
-	public Inmueble(LocalDate fechaCarga, String estado, String provincia, String calle, Integer numeroCalle,
+	public Inmueble(LocalDate fechaCarga, String estado, String provincia,String localidad, String calle, Integer numeroCalle,
 			String pisoDepartamento, String barrio, String tipoInmueble, Float precioVenta, String orientacion,
-			Float frente, Float fondo, Float superficieTerreno, String propiedadHorizontal, Float superficieEdificada,
+			Float frente, Float fondo, Float superficieTerreno, Boolean propiedadHorizontal, Float superficieEdificada,
 			Integer antiguedad, Integer dormitorios, Integer baños, Boolean garageCochera, Boolean patio,
 			Boolean piscina, Boolean aguaCorriente, Boolean cloacas, Boolean gasNatural, Boolean aguaCaliente,
 			Boolean telefono, Boolean lavadero, Boolean pavimento, String observaciones, Boolean eliminado,
@@ -230,7 +231,7 @@ public class Inmueble {
 
 
 
-	public String getPropiedadHorizontal() {
+	public Boolean getPropiedadHorizontal() {
 		return propiedadHorizontal;
 	}
 
@@ -446,7 +447,7 @@ public class Inmueble {
 
 
 
-	public void setPropiedadHorizontal(String string) {
+	public void setPropiedadHorizontal(Boolean string) {
 		this.propiedadHorizontal = string;
 	}
 

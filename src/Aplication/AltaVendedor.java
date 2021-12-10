@@ -238,13 +238,13 @@ public class AltaVendedor extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-public void informarErrorDeAlta() {
-		
-		JOptionPane.showMessageDialog(null, "No se pudo dar de alta el vendedor. Verifique que todos los campos esten correctos.");
-		
+	public void informarErrorDeAlta() {
+			
+			JOptionPane.showMessageDialog(null, "No se pudo dar de alta el vendedor. Verifique que todos los campos esten correctos.");
+			
+		}
+	public void mensajeExitosoDeAlta()
+	{
+		JOptionPane.showMessageDialog(null, "Vendedor dado de alta con exito.");
 	}
-public void mensajeExitosoDeAlta()
-{
-	JOptionPane.showMessageDialog(null, "Vendedor dado de alta con exito.");
-}
 }
