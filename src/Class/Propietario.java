@@ -2,6 +2,11 @@ package Class;
 
 public class Propietario {
 
+	@Override
+	public String toString() {
+		return nombre + " " + apellido + " " + numeroDocumento;
+	}
+
 	private Integer idPropietario;
 	private String nombre;
 	private String apellido;

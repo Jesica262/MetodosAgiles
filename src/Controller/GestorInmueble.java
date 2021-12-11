@@ -48,9 +48,11 @@ public class GestorInmueble {
 				
 			}
     }
-	public boolean validacionVacios(String propietario, String fechaCarga,String provincia, String localidad, String calle, String numeroCalle, String tipoInmueble,String precioVenta) {
+	public boolean validacionVacios(String propietario, String fechaCarga,String provincia, 
+			String localidad, String calle, String numeroCalle, String tipoInmueble,String precioVenta) {
 			
-			if(propietario.isBlank() || fechaCarga.isBlank() || provincia.isBlank() || localidad.isBlank() || calle.isBlank() || numeroCalle.isBlank() || tipoInmueble.isBlank() || precioVenta.isBlank()) {
+			if(propietario.isBlank() || fechaCarga.isBlank() || provincia.isBlank() || localidad.isBlank() ||
+					calle.isBlank() || numeroCalle.isBlank() || tipoInmueble.isBlank() || precioVenta.isBlank()) {
 				System.out.println("Algun campo obligatorio se encuentra vacío"); 
 				return false;
 			}

@@ -114,7 +114,7 @@ public class InmuebleABM extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ModificarInmueble modificar = new ModificarInmueble();
+				ModificarInmueble modificar = new ModificarInmueble((Inmueble)comboBoxInmuebles.getSelectedItem());
 				modificar.setVisible(true);
 				modificar.setLocationRelativeTo(null);
 				dispose();

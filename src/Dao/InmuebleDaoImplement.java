@@ -1,5 +1,9 @@
 package Dao;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,13 +16,24 @@ import java.util.List;
 import Class.Inmueble;
 import Class.Propietario;
 
+
+
 public class InmuebleDaoImplement implements InmuebleDao{
 	private Connection con;
 	private PropietarioDao daoPropietario = new PropietarioDaoImplement();
-	private static final String insert = "INSERT INTO inmueble (fechaDeCarga,estado,provincia,localidad,calle,numero,pisoDepartamento,barrio,tipoInmueble,precioVenta,orientacion,frente,fondo,superficieTerreno,gasNatural,antiguedad,aguaCorriente,aguaCaliente,cloacas,patio,pavimento,piscina,baños,dormitorios,lavadero,garage,propiedadHorizontal,observaciones,eliminado,reservado,vendido,foto,idPropietario,telefono) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String insert = "INSERT INTO inmueble (fechaDeCarga,estado,provincia,localidad,calle,numero,"
+			+ "pisoDepartamento,barrio,tipoInmueble,precioVenta,orientacion,frente,fondo,superficieTerreno,gasNatural,"
+			+ "antiguedad,aguaCorriente,aguaCaliente,cloacas,patio,pavimento,piscina,baños,dormitorios,lavadero,garage,"
+			+ "propiedadHorizontal,observaciones,eliminado,reservado,vendido,idPropietario,telefono) "
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String delete = "UPDATE inmueble SET eliminado=true WHERE codigo = ?";
 	private static final String select_todos ="SELECT * FROM inmueble WHERE eliminado=0";
-	private static final String update="UPDATE inmueble SET fechaDeCarga=?, estado=?, provincia=?, localidad=?, calle=?, numero=?, pisoDepartamento=?, barrio=?, tipoInmueble=?, precioVenta=?, orientacion=?, frente=?, fondo=?, superficieTerreno=?, gasNatural=?, antiguedad=?, aguaCorriente=?, aguaCaliente=?, cloacas=?, patio=?, pavimento=?, piscina=?, baños=?, dormitorios=?, lavadero=?, garage=?, propiedadHorizontal=?, observaciones=?, eliminado=?, reservado=?, vendido=?, idPropietario=?, telefono=? WHERE codigo= ?";
+	private static final String update="UPDATE inmueble SET fechaDeCarga=?, estado=?, provincia=?, localidad=?, calle=?, "
+			+ "numero=?, pisoDepartamento=?, barrio=?, tipoInmueble=?, precioVenta=?, orientacion=?, frente=?, fondo=?, "
+			+ "superficieTerreno=?, gasNatural=?, antiguedad=?, aguaCorriente=?, aguaCaliente=?, cloacas=?, patio=?, "
+			+ "pavimento=?, piscina=?, baños=?, dormitorios=?, lavadero=?, garage=?, propiedadHorizontal=?, observaciones=?, "
+			+ "eliminado=?, reservado=?, vendido=?, idPropietario=?, telefono=? WHERE codigo= ?";
+	
 	private static final String search = "SELECT * FROM inmueble WHERE ";
 	private static final String selectAll = "SELECT * FROM inmueble";
 	
@@ -61,9 +76,10 @@ public class InmuebleDaoImplement implements InmuebleDao{
 		        pr.setBoolean(29, i.getEliminado());
 		        pr.setBoolean(30, i.getReservado());
 		        pr.setBoolean(31, i.getVendido());
-		        //pr.setBlob(parameterIndex, inputStream, length);   //agregar otro ? en la sentencia insert al arreglar esto
 		        pr.setInt(32, i.getPropietario().getIdPropietario());
 		        pr.setBoolean(33, i.getTelefono());
+		        
+		       
 		        
 				pr.executeUpdate();		
 			
@@ -146,7 +162,6 @@ public class InmuebleDaoImplement implements InmuebleDao{
 		        pr.setBoolean(29, i.getEliminado());
 		        pr.setBoolean(30, i.getReservado());
 		        pr.setBoolean(31, i.getVendido());
-		        //pr.setBlob(parameterIndex, inputStream, length);   //agregar fot=? en la sentencia update al arreglar esto
 		        pr.setInt(32, i.getPropietario().getIdPropietario());
 		        pr.setBoolean(33, i.getTelefono());
 		        pr.setInt(34, i.getCodigo());
@@ -220,8 +235,8 @@ public class InmuebleDaoImplement implements InmuebleDao{
 				i.setSuperficieTerreno(rs.getFloat("superficieTerreno"));
 				i.setTelefono(rs.getBoolean("telefono"));
 				i.setTipoInmueble(rs.getString("tipoInmueble"));
-				i.setVendido(rs.getBoolean("vedido")); 
-				
+				i.setVendido(rs.getBoolean("vendido")); 
+				i.setCodigo(rs.getInt("codigo"));
 				
 								
 				lista.add(i);
@@ -290,7 +305,7 @@ public class InmuebleDaoImplement implements InmuebleDao{
 				i.setSuperficieTerreno(rs.getFloat("superficieTerreno"));
 				i.setTelefono(rs.getBoolean("telefono"));
 				i.setTipoInmueble(rs.getString("tipoInmueble"));
-				i.setVendido(rs.getBoolean("vedido")); 
+				i.setVendido(rs.getBoolean("vendido")); 
 				i.setPropietario(daoPropietario.buscarPorId(rs.getInt("idPropietario")));
 				i.setCodigo(rs.getInt("codigo"));
 				

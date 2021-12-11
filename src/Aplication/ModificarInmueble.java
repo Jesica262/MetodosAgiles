@@ -6,20 +6,32 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Class.Inmueble;
+import Class.Propietario;
+import Controller.GestorInmueble;
+import Controller.GestorPropietario;
+
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.time.LocalDate;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
 public class ModificarInmueble extends JFrame {
@@ -27,9 +39,7 @@ public class ModificarInmueble extends JFrame {
 	private JPanel contentPane;
 	private JTextField textProvincia;
 	private JTextField textFieldNroCalle;
-	private JTextField textClave;
-	private JTextField textFieldOtraLocalidad;
-	private JTextField textFieldOtraCalle;
+	private JTextField textBarrio;
 	private JTextField textFieldPiso;
 	private JTextField textFieldDepartamento;
 	private JTextField textFieldPrecioVenta;
@@ -39,6 +49,14 @@ public class ModificarInmueble extends JFrame {
 	private JTextField textFieldBaños;
 	private JTextField textFieldDormitorios;
 	private JTextField textFieldAntiguedad;
+	private JTextField textFieldLocalidad;
+	private JTextField textFieldCalle;
+	private JTextField textFieldSuperficieEdificada;
+	private JTextField textFieldFechaDeCarga;
+	private GestorInmueble gestor= GestorInmueble.get();
+	private GestorPropietario gestorPropietario = new GestorPropietario();
+	
+	
 
 	/**
 	 * Launch the application.
@@ -47,7 +65,7 @@ public class ModificarInmueble extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ModificarInmueble frame = new ModificarInmueble();
+					ModificarInmueble frame = new ModificarInmueble(new Inmueble());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,8 +77,8 @@ public class ModificarInmueble extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ModificarInmueble() {
-		setTitle("Interface Inmueble");
+	public ModificarInmueble(Inmueble inmueble) {
+		setTitle("Modificar Inmueble");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 627, 825);
 		contentPane = new JPanel();
@@ -80,69 +98,89 @@ public class ModificarInmueble extends JFrame {
 		JLabel lblBarrio = new JLabel("Barrio");
 		
 		textProvincia = new JTextField();
+		textProvincia.setText(inmueble.getProvincia());
 		textProvincia.setColumns(10);
 		
 		textFieldNroCalle = new JTextField();
+		textFieldNroCalle.setText(inmueble.getNumeroCalle().toString());
 		textFieldNroCalle.setColumns(10);
 		
-		textClave = new JTextField();
-		textClave.setColumns(10);
-		
-		JLabel lblOtraLocalidad = new JLabel("Otra localidad:");
-		
-		textFieldOtraLocalidad = new JTextField();
-		textFieldOtraLocalidad.setColumns(10);
-		
-		JComboBox comboBoxLocalidades = new JComboBox();
-		
-		JComboBox comboBoxCalles = new JComboBox();
-		
-		textFieldOtraCalle = new JTextField();
-		textFieldOtraCalle.setColumns(10);
-		
-		JLabel lblOtraCalle = new JLabel("Otra calle:");
+		textBarrio = new JTextField();
+		textBarrio.setText(inmueble.getBarrio());
+		textBarrio.setColumns(10);
 		
 		JLabel lblPiso = new JLabel("Piso:");
 		
 		textFieldPiso = new JTextField();
+		textFieldPiso.setText(inmueble.getPisoDepartamento());
 		textFieldPiso.setColumns(10);
 		
 		JLabel lblDepartamento = new JLabel("Departamento:");
 		
 		textFieldDepartamento = new JTextField();
+		textFieldDepartamento.setText(inmueble.getPisoDepartamento());
 		textFieldDepartamento.setColumns(10);
 		
 		JLabel lblTipoInmueble = new JLabel("Tipo de Inmueble:");
 		
-		JComboBox comboBoxTipoInmueble = new JComboBox();
+		JComboBox<String> comboBoxTipoInmueble = new JComboBox<String>();
+		comboBoxTipoInmueble.addItem(inmueble.getTipoInmueble());
+		comboBoxTipoInmueble.addItem("L");
+		comboBoxTipoInmueble.addItem("C");
+		comboBoxTipoInmueble.addItem("D");
+		comboBoxTipoInmueble.addItem("T");
+		comboBoxTipoInmueble.addItem("Q");
+		comboBoxTipoInmueble.addItem("G");
+		
+		
 		
 		JLabel lblPrecioVenta = new JLabel("Precio de Venta:");
 		
 		textFieldPrecioVenta = new JTextField();
+		textFieldPrecioVenta.setText(inmueble.getPrecioVenta().toString());
 		textFieldPrecioVenta.setColumns(10);
 		
 		JLabel lblUSD = new JLabel("USD$");
 		
 		JLabel lblOrientacion = new JLabel("Orientaci\u00F3n:");
 		
-		JComboBox comboBoxOrientacion = new JComboBox();
+		JComboBox<String> comboBoxOrientacion = new JComboBox<String>();
+		comboBoxOrientacion.addItem(inmueble.getOrientacion());
+		comboBoxOrientacion.addItem("ESTE");
+		comboBoxOrientacion.addItem("OESTE");
+		comboBoxOrientacion.addItem("NORTE");
+		comboBoxOrientacion.addItem("SUR");
 		
 		JLabel lblFrente = new JLabel("Frente (m):");
 		
 		textFieldFrente = new JTextField();
+		textFieldFrente.setText(inmueble.getFrente().toString());
 		textFieldFrente.setColumns(10);
 		
 		JLabel lblFondo = new JLabel("Fondo (m):");
 		
 		textFieldFondo = new JTextField();
+		textFieldFondo.setText(inmueble.getFondo().toString());
 		textFieldFondo.setColumns(10);
 		
 		JLabel lblSuperficie = new JLabel("Superficie del Terreno (m2):");
 		
 		textFieldSuperficie = new JTextField();
+		textFieldSuperficie.setText(inmueble.getSuperficieTerreno().toString());
 		textFieldSuperficie.setColumns(10);
 		
 		JButton btnVerImagenInmueble = new JButton("Cargar Imagen");
+		btnVerImagenInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser file = new JFileChooser();
+				file.showOpenDialog(new JFrame());
+				File archivo = file.getSelectedFile();
+				if(archivo!=null) {
+					String origen = archivo.getPath();
+					inmueble.setImagen(new ImageIcon(origen));
+				}
+			}
+		});
 		
 		JScrollBar scrollBar = new JScrollBar();
 		
@@ -150,61 +188,163 @@ public class ModificarInmueble extends JFrame {
 		
 		JLabel lblPropietarios = new JLabel("Propietario:");
 		
-		JComboBox comboBoxPropietarios = new JComboBox();
+		JComboBox<Propietario> comboBoxPropietarios = new JComboBox<Propietario>();
+		comboBoxPropietarios.addItem(inmueble.getPropietario());
+		try {
+			List<Propietario> listaPropietarios = gestorPropietario.buscarTodos();
+			for(Propietario p : listaPropietarios) comboBoxPropietarios.addItem(p);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			mensajeErrorAlCargarPropietarios();
+		}
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Propiedad Horizontal");
+		JCheckBox chckbxPropiedadHorizontal = new JCheckBox("Propiedad Horizontal");
+		chckbxPropiedadHorizontal.setSelected(inmueble.getPropiedadHorizontal());
 		
 		JCheckBox chckbxPatio = new JCheckBox("Patio");
+		chckbxPatio.setSelected(inmueble.getPatio());
 		
 		JCheckBox chckbxCochera = new JCheckBox("Cochera");
+		chckbxCochera.setSelected(inmueble.getGarageCochera());
 		
-		JCheckBox chckbxNewCheckBox_2_1 = new JCheckBox("Clocacas");
+		JCheckBox chckbxCloacas = new JCheckBox("Clocacas");
+		chckbxCloacas.setSelected(inmueble.getCloacas());
 		
 		JCheckBox chckbxGarage = new JCheckBox("Garage");
+		chckbxGarage.setSelected(inmueble.getGarageCochera());
 		
 		JCheckBox chckbxPiscina = new JCheckBox("Piscina");
+		chckbxPiscina.setSelected(inmueble.getPiscina());
 		
-		JCheckBox chckbxNewCheckBox_2_2_1_1 = new JCheckBox("Agua Corriente");
+		JCheckBox chckbxAguaCorriente = new JCheckBox("Agua Corriente");
+		chckbxAguaCorriente.setSelected(inmueble.getAguaCorriente());
 		
 		JCheckBox chckbxLavadero = new JCheckBox("Lavadero");
+		chckbxLavadero.setSelected(inmueble.getLavadero());
 		
 		JLabel lblDormitorios = new JLabel("Cantidad de dormitorios:");
 		
 		textFieldBaños = new JTextField();
+		textFieldBaños.setText(inmueble.getBaños().toString());
 		textFieldBaños.setHorizontalAlignment(SwingConstants.LEFT);
 		textFieldBaños.setColumns(10);
 		
 		JLabel lblBaños = new JLabel("Cantidad de ba\u00F1os:");
 		
 		JCheckBox chckbxAguaCaliente = new JCheckBox("Agua Caliente");
+		chckbxAguaCaliente.setSelected(inmueble.getAguaCaliente());
 		
 		JCheckBox chckbxGasNatural = new JCheckBox("Gas Natural");
+		chckbxGasNatural.setSelected(inmueble.getGasNatural());
 		
 		JCheckBox chckbxPavimento = new JCheckBox("Pavimento");
+		chckbxPavimento.setSelected(inmueble.getPavimento());
 		
 		JCheckBox chckbxTelefono = new JCheckBox("Tel\u00E9fono");
+		chckbxTelefono.setSelected(inmueble.getTelefono());
 		
 		JLabel lblObservaciones = new JLabel("Observaciones:");
 		
-		JTextArea textArea = new JTextArea();
+		JTextArea textObservaciones = new JTextArea();
+		textObservaciones.setText(inmueble.getObservaciones());
 		
 		JButton btnPrevisualizarImagen = new JButton("Previsualizar Imagen");
-		
-		JButton btnModificar = new JButton("Modificar Inmueble");
-		btnModificar.addActionListener(new ActionListener() {
+		btnPrevisualizarImagen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(inmueble.getImagen()!=null) {
+					MostrarFoto foto= new MostrarFoto(inmueble.getImagen());
+					foto.setVisible(true);
+					foto.setLocationRelativeTo(null);
+				}else JOptionPane.showMessageDialog(null,"No existe imagen cargada.");
 			}
 		});
 		
+		
+		
 		textFieldDormitorios = new JTextField();
+		textFieldDormitorios.setText(inmueble.getDormitorios().toString());
 		textFieldDormitorios.setColumns(10);
 		
 		JLabel lblAntiguedad = new JLabel("Antiguedad:");
 		
 		textFieldAntiguedad = new JTextField();
+		textFieldAntiguedad.setText(inmueble.getAntiguedad().toString());
 		textFieldAntiguedad.setColumns(10);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InmuebleABM inmuebleABM = new InmuebleABM();
+				inmuebleABM.setVisible(true);
+				inmuebleABM.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		
+		textFieldLocalidad = new JTextField();
+		textFieldLocalidad.setText(inmueble.getLocalidad());
+		textFieldLocalidad.setColumns(10);
+		
+		textFieldCalle = new JTextField();
+		textFieldCalle.setText(inmueble.getCalle());
+		textFieldCalle.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Superficie Edificada");
+		
+		textFieldSuperficieEdificada = new JTextField();
+		textFieldSuperficieEdificada.setText(inmueble.getSuperficieEdificada().toString());
+		textFieldSuperficieEdificada.setText("");
+		textFieldSuperficieEdificada.setColumns(10);
+		
+		textFieldFechaDeCarga = new JTextField();
+		textFieldFechaDeCarga.setText(inmueble.getFechaCarga().toString());
+		textFieldFechaDeCarga.setEnabled(false);
+		textFieldFechaDeCarga.setEditable(false);
+		textFieldFechaDeCarga.setColumns(10);
+		
+		JButton btnModificar = new JButton("Modificar Inmueble");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(gestor.validacionVacios(comboBoxPropietarios.getSelectedItem().toString(), textFieldFechaDeCarga.getText(), 
+						textProvincia.getText(), textFieldLocalidad.getText(), textFieldCalle.getText(), textFieldNroCalle.getText(),
+						comboBoxTipoInmueble.getSelectedItem().toString(), textFieldPrecioVenta.getText())) {
+					
+					Inmueble i = new Inmueble(inmueble.getFechaCarga(),"ALTO",textProvincia.getText(),textFieldLocalidad.getText(),
+							textFieldCalle.getText(),Integer.parseInt(textFieldNroCalle.getText()),
+							textFieldDepartamento.getText(),textBarrio.getText(),comboBoxTipoInmueble.getSelectedItem().toString(),
+							Float.parseFloat(textFieldPrecioVenta.getText()),comboBoxOrientacion.getSelectedItem().toString(),
+							Float.parseFloat(textFieldFrente.getText()),Float.parseFloat(textFieldFondo.getText()), 
+							Float.parseFloat(textFieldSuperficie.getText()), chckbxPropiedadHorizontal.isSelected(), 
+							Float.parseFloat(textFieldSuperficieEdificada.getText()), 
+							Integer.parseInt(textFieldAntiguedad.getText()), Integer.parseInt(textFieldDormitorios.getText()), 
+							Integer.parseInt(textFieldBaños.getText()), chckbxCochera.isSelected() , chckbxPatio.isSelected(), 
+							chckbxPiscina.isSelected(), chckbxAguaCorriente.isSelected(), chckbxCloacas.isSelected(), 
+							chckbxGasNatural.isSelected(),chckbxAguaCaliente.isSelected(), 
+							chckbxTelefono.isSelected(), chckbxLavadero.isSelected(), chckbxPavimento.isSelected(), 
+							textObservaciones.getText(),inmueble.getEliminado(),
+							inmueble.getReservado(),inmueble.getVendido(), (Propietario) comboBoxPropietarios.getSelectedItem());
+					i.setCodigo(inmueble.getCodigo());
+					
+					try {
+						gestor.modificarInmueble(i);
+						mensajeExitosoDeModificacion();
+						InmuebleABM abm= new InmuebleABM();
+						abm.setVisible(true);
+						abm.setLocationRelativeTo(null);
+						dispose();
+						
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						informarErrorDeModificacion();
+					}
+					
+					
+				}else informarErrorDeModificacion();
+			}
+
+			
+		});
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -239,50 +379,49 @@ public class ModificarInmueble extends JFrame {
 													.addPreferredGap(ComponentPlacement.UNRELATED)
 													.addComponent(textFieldPiso, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 												.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-													.addComponent(comboBoxLocalidades, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-													.addComponent(comboBoxCalles, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
-												.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-													.addComponent(textClave, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+													.addComponent(textBarrio, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
 													.addComponent(comboBoxTipoInmueble, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-											.addGap(18)
 											.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-													.addGroup(gl_panel_1.createSequentialGroup()
-														.addComponent(lblOtraLocalidad)
-														.addGap(18)
-														.addComponent(textFieldOtraLocalidad))
-													.addGroup(gl_panel_1.createSequentialGroup()
-														.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-															.addComponent(lblOtraCalle, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-															.addComponent(lblDepartamento, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-														.addPreferredGap(ComponentPlacement.RELATED)
-														.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-															.addComponent(textFieldDepartamento, Alignment.LEADING)
-															.addComponent(textFieldOtraCalle, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))))
 												.addGroup(gl_panel_1.createSequentialGroup()
-													.addPreferredGap(ComponentPlacement.RELATED)
+													.addGap(18)
 													.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 														.addGroup(gl_panel_1.createSequentialGroup()
-															.addComponent(lblPrecioVenta, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+															.addComponent(lblDepartamento, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
 															.addPreferredGap(ComponentPlacement.RELATED)
-															.addComponent(textFieldPrecioVenta, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-															.addGap(10)
-															.addComponent(lblUSD, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+															.addComponent(textFieldDepartamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 														.addGroup(gl_panel_1.createSequentialGroup()
-															.addComponent(lblFrente, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
 															.addPreferredGap(ComponentPlacement.RELATED)
 															.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-																.addComponent(textFieldAntiguedad, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 																.addGroup(gl_panel_1.createSequentialGroup()
-																	.addComponent(textFieldFrente, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-																	.addPreferredGap(ComponentPlacement.UNRELATED)
-																	.addComponent(lblFondo, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+																	.addComponent(lblFrente, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
 																	.addPreferredGap(ComponentPlacement.RELATED)
-																	.addComponent(textFieldFondo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))))))
-										.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)))
+																	.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+																		.addComponent(textFieldAntiguedad, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+																		.addGroup(gl_panel_1.createSequentialGroup()
+																			.addComponent(textFieldFrente, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+																			.addPreferredGap(ComponentPlacement.UNRELATED)
+																			.addComponent(lblFondo, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+																			.addPreferredGap(ComponentPlacement.RELATED)
+																			.addComponent(textFieldFondo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))
+																.addGroup(gl_panel_1.createSequentialGroup()
+																	.addComponent(lblPrecioVenta, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+																	.addPreferredGap(ComponentPlacement.RELATED)
+																	.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+																		.addComponent(textFieldSuperficieEdificada, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+																		.addGroup(gl_panel_1.createSequentialGroup()
+																			.addComponent(textFieldPrecioVenta, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+																			.addGap(10)
+																			.addComponent(lblUSD, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))))))))
+												.addGroup(gl_panel_1.createSequentialGroup()
+													.addGap(34)
+													.addComponent(lblNewLabel))))
+										.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textFieldLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textFieldCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textFieldFechaDeCarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-										.addComponent(chckbxNewCheckBox)
+										.addComponent(chckbxPropiedadHorizontal)
 										.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 											.addGroup(gl_panel_1.createSequentialGroup()
 												.addComponent(lblOrientacion, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
@@ -290,7 +429,7 @@ public class ModificarInmueble extends JFrame {
 												.addComponent(comboBoxOrientacion, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 											.addComponent(chckbxCochera, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 											.addComponent(chckbxGarage, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-											.addComponent(chckbxNewCheckBox_2_2_1_1, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+											.addComponent(chckbxAguaCorriente, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 											.addGroup(gl_panel_1.createSequentialGroup()
 												.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
 													.addComponent(lblBaños, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -305,7 +444,7 @@ public class ModificarInmueble extends JFrame {
 												.addGroup(gl_panel_1.createSequentialGroup()
 													.addGap(36)
 													.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-														.addComponent(chckbxNewCheckBox_2_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+														.addComponent(chckbxCloacas, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxPiscina, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxLavadero, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxPatio, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))
@@ -316,7 +455,7 @@ public class ModificarInmueble extends JFrame {
 														.addComponent(lblDormitorios))))
 											.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 												.addGroup(gl_panel_1.createSequentialGroup()
-													.addPreferredGap(ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+													.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 													.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 														.addComponent(chckbxAguaCaliente, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 														.addComponent(chckbxGasNatural, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
@@ -327,7 +466,7 @@ public class ModificarInmueble extends JFrame {
 													.addComponent(textFieldDormitorios, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))))
 										.addGroup(gl_panel_1.createSequentialGroup()
 											.addGap(18)
-											.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(textObservaciones, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)))
 									.addGap(4))))
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(36)
@@ -336,11 +475,11 @@ public class ModificarInmueble extends JFrame {
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addGap(2)
-									.addComponent(btnPrevisualizarImagen, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+									.addComponent(btnPrevisualizarImagen, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
 									.addGap(35)
 									.addComponent(btnModificar, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+									.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
 								.addComponent(lblObservaciones, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGap(116)
@@ -359,7 +498,9 @@ public class ModificarInmueble extends JFrame {
 						.addComponent(lblPropietarios)
 						.addComponent(comboBoxPropietarios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(lblFechaDeCarga)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblFechaDeCarga)
+						.addComponent(textFieldFechaDeCarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -367,17 +508,12 @@ public class ModificarInmueble extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLocalidad)
-						.addComponent(comboBoxLocalidades, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblOtraLocalidad)
-						.addComponent(textFieldOtraLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-							.addComponent(comboBoxCalles, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblOtraCalle)
-							.addComponent(textFieldOtraCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblCalle))
-					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCalle)
+						.addComponent(textFieldCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(24)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
@@ -388,8 +524,10 @@ public class ModificarInmueble extends JFrame {
 								.addComponent(lblDepartamento))
 							.addGap(18)
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblBarrio)))
+								.addComponent(textBarrio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblBarrio)
+								.addComponent(lblNewLabel)
+								.addComponent(textFieldSuperficieEdificada, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addComponent(textFieldDepartamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(24)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -426,12 +564,12 @@ public class ModificarInmueble extends JFrame {
 					.addGap(28)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(chckbxPatio)
-						.addComponent(chckbxNewCheckBox)
+						.addComponent(chckbxPropiedadHorizontal)
 						.addComponent(chckbxPavimento))
 					.addGap(26)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(chckbxCochera)
-						.addComponent(chckbxNewCheckBox_2_1)
+						.addComponent(chckbxCloacas)
 						.addComponent(chckbxTelefono))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
@@ -440,15 +578,15 @@ public class ModificarInmueble extends JFrame {
 						.addComponent(chckbxGasNatural))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(chckbxNewCheckBox_2_2_1_1)
+						.addComponent(chckbxAguaCorriente)
 						.addComponent(chckbxLavadero)
 						.addComponent(chckbxAguaCaliente))
 					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(lblObservaciones, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+							.addComponent(lblObservaciones, GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
 							.addGap(41))
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textObservaciones, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnVerImagenInmueble)
@@ -472,5 +610,18 @@ public class ModificarInmueble extends JFrame {
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 731, GroupLayout.PREFERRED_SIZE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	private void mensajeErrorAlCargarPropietarios() {
+		JOptionPane.showMessageDialog(null, "Se produjo un error al intentar cargar los propietarios.");
+		
+	}
+	private void informarErrorDeModificacion() {
+		JOptionPane.showMessageDialog(null, "No se pudo modificar el Inmueble. Por favor verifique los datos.");
+		
+	}
+
+	private void mensajeExitosoDeModificacion() {
+		JOptionPane.showMessageDialog(null, "El inmueble fué modificado con éxito.");
+		
 	}
 }

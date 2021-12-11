@@ -80,6 +80,7 @@ public class PropietarioDaoImplement implements PropietarioDao{
 				p.setTipoDocumento(rs.getString("tipoDocumento"));
 				p.setEliminado(rs.getBoolean("eliminado"));
 				p.setProvincia(rs.getString("provincia"));
+				p.setIdPropietario(rs.getInt("idPropietario"));
 				
 				if(!p.getEliminado())
 				{

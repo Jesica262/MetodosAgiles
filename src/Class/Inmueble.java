@@ -2,6 +2,8 @@ package Class;
 
 import java.time.LocalDate;
 
+import javax.swing.ImageIcon;
+
 public class Inmueble {
 
 	
@@ -15,13 +17,6 @@ public class Inmueble {
 	private String pisoDepartamento;
 	private String barrio;
 	private String tipoInmueble;//ver en la historia
-	@Override
-	public String toString() {
-		return calle + " " + numeroCalle;
-	}
-
-
-
 	private Float precioVenta;
 	private String orientacion;
 	private Float frente;
@@ -46,6 +41,7 @@ public class Inmueble {
 	private Boolean eliminado;
 	private Boolean reservado;
 	private Boolean vendido;
+	private ImageIcon imagen;
 	private Propietario propietario;
 	
 	public Inmueble(Integer codigo, LocalDate fechaCarga, String estado, String provincia,String localidad, String calle,
@@ -106,6 +102,7 @@ public class Inmueble {
 		this.fechaCarga = fechaCarga;
 		this.estado = estado;
 		this.provincia = provincia;
+		this.localidad=localidad;
 		this.calle = calle;
 		this.numeroCalle = numeroCalle;
 		this.pisoDepartamento = pisoDepartamento;
@@ -137,6 +134,7 @@ public class Inmueble {
 		this.vendido = vendido;
 		this.propietario = propietario;
 	}
+	
 
 
 
@@ -563,6 +561,22 @@ public class Inmueble {
 
 	public void setPropietario(Propietario propietario) {
 		this.propietario = propietario;
+	}
+	@Override
+	public String toString() {
+		return calle + " " + numeroCalle;
+	}
+
+
+
+	public ImageIcon getImagen() {
+		return imagen;
+	}
+
+
+
+	public void setImagen(ImageIcon imagen) {
+		this.imagen = imagen;
 	}
 		
 }

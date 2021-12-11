@@ -16,6 +16,7 @@ import Controller.GestorVendedor;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
@@ -23,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -31,6 +33,7 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
 public class AltaInmueble extends JFrame {
@@ -41,7 +44,6 @@ public class AltaInmueble extends JFrame {
 	private JTextField textBarrio;
 	private JTextField textFieldLocalidad;
 	private JTextField textFieldCalle;
-	private JTextField textFieldPiso;
 	private JTextField textFieldDepartamento;
 	private JTextField textFieldPrecioVenta;
 	private JTextField textFieldFrente;
@@ -54,6 +56,7 @@ public class AltaInmueble extends JFrame {
 	private GestorPropietario gestorPropietario = new GestorPropietario();
 	private JTextField textFechaCarga;
 	private JTextField textFieldSuperficieEdificada;
+	ImageIcon imagen=null;
 
 	/**
 	 * Launch the application.
@@ -109,11 +112,6 @@ public class AltaInmueble extends JFrame {
 		textFieldCalle = new JTextField();
 		textFieldCalle.setColumns(10);
 		
-		JLabel lblPiso = new JLabel("Piso:");
-		
-		textFieldPiso = new JTextField();
-		textFieldPiso.setColumns(10);
-		
 		JLabel lblDepartamento = new JLabel("Departamento:");
 		
 		textFieldDepartamento = new JTextField();
@@ -121,7 +119,7 @@ public class AltaInmueble extends JFrame {
 		
 		JLabel lblTipoInmueble = new JLabel("Tipo de Inmueble:");
 		
-		JComboBox comboBoxTipoInmueble = new JComboBox();
+		JComboBox<String> comboBoxTipoInmueble = new JComboBox<String>();
 		comboBoxTipoInmueble.addItem("L");
 		comboBoxTipoInmueble.addItem("C");
 		comboBoxTipoInmueble.addItem("D");
@@ -138,7 +136,11 @@ public class AltaInmueble extends JFrame {
 		
 		JLabel lblOrientacion = new JLabel("Orientaci\u00F3n:");
 		
-		JComboBox comboBoxOrientacion = new JComboBox();
+		JComboBox<String> comboBoxOrientacion = new JComboBox<String>();
+		comboBoxOrientacion.addItem("ESTE");
+		comboBoxOrientacion.addItem("OESTE");
+		comboBoxOrientacion.addItem("NORTE");
+		comboBoxOrientacion.addItem("SUR");
 		
 		JLabel lblFrente = new JLabel("Frente (m):");
 		
@@ -156,6 +158,20 @@ public class AltaInmueble extends JFrame {
 		textFieldSuperficie.setColumns(10);
 		
 		JButton btnVerImagenInmueble = new JButton("Cargar Imagen");
+		btnVerImagenInmueble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser file = new JFileChooser();
+				file.showOpenDialog(new JFrame());
+				File archivo = file.getSelectedFile();
+				if(archivo!=null) {
+					String origen = archivo.getPath();
+					imagen = new ImageIcon(origen);
+					
+				}
+				
+				
+			}
+		});
 		
 		JScrollBar scrollBar = new JScrollBar();
 		
@@ -164,7 +180,7 @@ public class AltaInmueble extends JFrame {
 		JLabel lblPropietarios = new JLabel("Propietario:");
 		
 		
-		JComboBox comboBoxPropietarios = new JComboBox();
+		JComboBox<Propietario> comboBoxPropietarios = new JComboBox<Propietario>();
 		try {
 			List<Propietario> listaPropietarios = gestorPropietario.buscarTodos();
 			for(Propietario p : listaPropietarios) comboBoxPropietarios.addItem(p);
@@ -223,44 +239,59 @@ public class AltaInmueble extends JFrame {
 		textFieldAntiguedad.setColumns(10);
 		
 		JButton btnPrevisualizarImagen = new JButton("Previsualizar Imagen");
+		btnPrevisualizarImagen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(imagen!=null) {
+					MostrarFoto foto= new MostrarFoto(imagen);
+					foto.setVisible(true);
+					foto.setLocationRelativeTo(null);
+				}else JOptionPane.showMessageDialog(null,"No existe imagen cargada.");
+			}
+		});
+		
+		
+		
 		
 		JButton btnCrearInmueble = new JButton("Crear Inmueble");
 		btnCrearInmueble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(gestor.validacionVacios(comboBoxPropietarios.getSelectedItem().toString(), textFechaCarga.getText(), textProvincia.getText(), textFieldLocalidad.getText(), textFieldCalle.getText(), textFieldNroCalle.getText(), comboBoxTipoInmueble.getSelectedItem().toString(), textFieldPrecioVenta.getText())) {
-					Inmueble i = new Inmueble(LocalDate.now(),"Alto",textProvincia.getText(),textFieldLocalidad.getText(),textFieldCalle.getText(),Integer.parseInt(textFieldNroCalle.getText()),
-							textFieldDepartamento.getText(),textBarrio.getText(),comboBoxTipoInmueble.getSelectedItem().toString(),Float.parseFloat(textFieldPrecioVenta.getText()),comboBoxOrientacion.getSelectedItem().toString(),
-							Float.parseFloat(textFieldFrente.getText()),Float.parseFloat(textFieldFondo.getText()), Float.parseFloat(textFieldSuperficie.getText()), chckbxPropiedadHorizontal.isSelected(), Float.parseFloat(textFieldSuperficieEdificada.getText()), 
-							Integer.parseInt(textFieldAntiguedad.getText()), Integer.parseInt(textFieldDormitorios.getText()), Integer.parseInt(textFieldBaños.getText()), chckbxCochera.isSelected() , chckbxPatio.isSelected(), 
-							chckbxPiscina.isSelected(), chckbxAguaCorriente.isSelected(), chckbxCloacas.isSelected(), chckbxGasNatural.isSelected(),chckbxAguaCaliente.isSelected(), 
-							chckbxTelefono.isSelected(), chckbxLavadero.isSelected(), chckbxPavimento.isSelected(), textObservaciones.getText(),false,
-							false,false, (Propietario) comboBoxPropietarios.getSelectedItem());
+				if(gestor.validacionVacios(comboBoxPropietarios.getSelectedItem().toString(), textFechaCarga.getText(), 
+						textProvincia.getText(), textFieldLocalidad.getText(), textFieldCalle.getText(), textFieldNroCalle.getText(), 
+						comboBoxTipoInmueble.getSelectedItem().toString(), textFieldPrecioVenta.getText())) {
+					
+					Inmueble i = new Inmueble(LocalDate.now(),"ALTO",textProvincia.getText(),textFieldLocalidad.getText(),
+							textFieldCalle.getText(),Integer.parseInt(textFieldNroCalle.getText()),
+							textFieldDepartamento.getText(),textBarrio.getText(),comboBoxTipoInmueble.getSelectedItem().toString(),
+							Float.parseFloat(textFieldPrecioVenta.getText()),comboBoxOrientacion.getSelectedItem().toString(),
+							Float.parseFloat(textFieldFrente.getText()),Float.parseFloat(textFieldFondo.getText()), 
+							Float.parseFloat(textFieldSuperficie.getText()), chckbxPropiedadHorizontal.isSelected(), 
+							Float.parseFloat(textFieldSuperficieEdificada.getText()), 
+							Integer.parseInt(textFieldAntiguedad.getText()), Integer.parseInt(textFieldDormitorios.getText()), 
+							Integer.parseInt(textFieldBaños.getText()), chckbxCochera.isSelected() , chckbxPatio.isSelected(), 
+							chckbxPiscina.isSelected(), chckbxAguaCorriente.isSelected(), chckbxCloacas.isSelected(), 
+							chckbxGasNatural.isSelected(),chckbxAguaCaliente.isSelected(), 
+							chckbxTelefono.isSelected(), chckbxLavadero.isSelected(), chckbxPavimento.isSelected(), 
+							textObservaciones.getText(),false, false,false, (Propietario) comboBoxPropietarios.getSelectedItem());
+					
+					try {
+						gestor.crearInmueble(i);
+						mensajeExitosoDeAlta();
+						InmuebleABM abm= new InmuebleABM();
+						abm.setVisible(true);
+						abm.setLocationRelativeTo(null);
+						dispose();
+						
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						informarErrorDeAlta();
+					}
+					
 					
 				}else informarErrorDeAlta();
 				
-//				if(gestor.validacionVacios((Propietario) comboBoxPropietarios.getSelectedItem(), textFechaCarga.getText(), textProvincia.getText(), comboBoxLocalidades.getSelectedItem().toString(), comboBoxCalles.getSelectedItem().toString(), textFieldNroCalle.getText(), comboBoxTipoInmueble.getSelectedItem().toString(), textFieldPrecioVenta.getText())) {
-//					Inmueble i=new Inmueble (textNombre.getText(), textApellido.getText(), Long.parseLong(textDni.getText()), textUsuario.getText(), textClave.getText(), textEmail.getText(), false);
-//					
-//					try {
-//						gv.crearVendedor(v);
-//						mensajeExitosoDeAlta();
-//						//volvemos a la pantalla anterior
-//						VendedorABM vendedorABM = new VendedorABM();
-//						vendedorABM.setVisible(true);
-//						vendedorABM.setLocationRelativeTo(null);
-//						dispose();
-//					} catch (Exception e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//						informarErrorDeAlta();
-//					}
-//					
-//					
-//				}else informarErrorDeAlta();
-//				//Mensaje 
-//				
-//			}
+
 			}
 		});
 		
@@ -301,8 +332,7 @@ public class AltaInmueble extends JFrame {
 															.addComponent(lblCalle, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 															.addComponent(lblProvincia)
 															.addComponent(lblFechaDeCarga)
-															.addComponent(lblPropietarios, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-															.addComponent(lblPiso))
+															.addComponent(lblPropietarios, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
 														.addGap(22))
 													.addGroup(gl_panel_1.createSequentialGroup()
 														.addComponent(lblSuperficie, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -317,10 +347,8 @@ public class AltaInmueble extends JFrame {
 																	.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
 																		.addComponent(textFieldCalle, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
 																		.addGroup(gl_panel_1.createSequentialGroup()
-																			.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-																				.addComponent(textFieldPiso, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-																				.addComponent(comboBoxTipoInmueble, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-																			.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+																			.addComponent(comboBoxTipoInmueble, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+																			.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
 																			.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 																				.addGroup(gl_panel_1.createSequentialGroup()
 																					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -388,7 +416,7 @@ public class AltaInmueble extends JFrame {
 																.addComponent(lblDormitorios)))
 														.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 															.addGroup(gl_panel_1.createSequentialGroup()
-																.addPreferredGap(ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+																.addPreferredGap(ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
 																.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 																	.addComponent(chckbxAguaCaliente, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 																	.addComponent(chckbxGasNatural, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
@@ -414,16 +442,16 @@ public class AltaInmueble extends JFrame {
 												.addGap(4))))
 									.addGroup(gl_panel_1.createSequentialGroup()
 										.addGap(36)
-										.addComponent(btnVerImagenInmueble, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+										.addComponent(btnVerImagenInmueble, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
 										.addPreferredGap(ComponentPlacement.RELATED)
 										.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 											.addGroup(gl_panel_1.createSequentialGroup()
 												.addGap(2)
-												.addComponent(btnPrevisualizarImagen, GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+												.addComponent(btnPrevisualizarImagen, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
 												.addGap(35)
 												.addComponent(btnCrearInmueble, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+												.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
 											.addComponent(lblObservaciones, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
 										.addPreferredGap(ComponentPlacement.RELATED)))
 								.addGap(116))
@@ -445,41 +473,35 @@ public class AltaInmueble extends JFrame {
 					.addComponent(scrollBar, GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(15)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPropietarios)
+						.addComponent(comboBoxPropietarios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblFechaDeCarga)
+						.addComponent(textFechaCarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblProvincia))
+					.addGap(12)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblLocalidad)
+						.addComponent(textFieldLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(15)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPropietarios)
-								.addComponent(comboBoxPropietarios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblFechaDeCarga)
-								.addComponent(textFechaCarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblProvincia))
-							.addGap(12)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblLocalidad)
-								.addComponent(textFieldLocalidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-									.addComponent(textFieldCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblNroCalle)
-									.addComponent(textFieldNroCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblCalle))
-							.addGap(18)
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textFieldPiso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDepartamento)
-								.addComponent(textFieldDepartamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblBarrio)
-								.addComponent(textBarrio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(187)
-							.addComponent(lblPiso)))
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(textFieldCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNroCalle)
+							.addComponent(textFieldNroCalle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblCalle))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDepartamento)
+						.addComponent(textFieldDepartamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblBarrio)
+						.addComponent(textBarrio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(20)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTipoInmueble)
